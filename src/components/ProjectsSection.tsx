@@ -1,0 +1,217 @@
+import React, { useEffect, useRef } from 'react';
+import { Button } from '@/components/ui/button';
+import { ExternalLink, Github } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Import project images
+import project1 from '@/assets/project-1.png';
+import project2 from '@/assets/project-2.png';
+import project3 from '@/assets/project-3.png';
+import project4 from '@/assets/project-4.png';
+import project5 from '@/assets/project-5.png';
+import project6 from '@/assets/project-6.png';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const projects = [
+  {
+    id: 1,
+    title: '3D Interactive Web Platform',
+    description: 'A modern email platform for developers with 3D elements and smooth animations.',
+    image: project1,
+    tech: ['React', 'Three.js', 'GSAP'],
+    liveUrl: '#',
+    githubUrl: '#',
+  },
+  {
+    id: 2,
+    title: 'Gaming UI Dashboard',
+    description: 'Next-level gaming interface with advanced user management and real-time stats.',
+    image: project2,
+    tech: ['React', 'TypeScript', 'Framer Motion'],
+    liveUrl: '#',
+    githubUrl: '#',
+  },
+  {
+    id: 3,
+    title: '3D Portfolio Website',
+    description: 'A futuristic portfolio showcasing 3D web design capabilities and modern aesthetics.',
+    image: project3,
+    tech: ['Next.js', 'Three.js', 'Tailwind CSS'],
+    liveUrl: '#',
+    githubUrl: '#',
+  },
+  {
+    id: 4,
+    title: 'Gaming Platform Interface',
+    description: 'Immersive gaming website with character customization and interactive elements.',
+    image: project4,
+    tech: ['React', 'GSAP', 'WebGL'],
+    liveUrl: '#',
+    githubUrl: '#',
+  },
+  {
+    id: 5,
+    title: 'Animation Tools Platform',
+    description: 'Professional platform for web animation tools with modern glassmorphic design.',
+    image: project5,
+    tech: ['React', 'GSAP', 'Locomotive Scroll'],
+    liveUrl: '#',
+    githubUrl: '#',
+  },
+  {
+    id: 6,
+    title: 'Animated Portfolio Tutorial',
+    description: 'Step-by-step tutorial platform for creating animated portfolios.',
+    image: project6,
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    liveUrl: '#',
+    githubUrl: '#',
+  },
+];
+
+const ProjectsSection: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Title animation
+      gsap.fromTo('.projects-title',
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 70%',
+          }
+        }
+      );
+
+      // Project cards stagger animation
+      gsap.fromTo('.project-card',
+        { opacity: 0, y: 100, rotationX: -15 },
+        {
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: scrollContainerRef.current,
+            start: 'top 80%',
+          }
+        }
+      );
+
+      // Horizontal scroll for mobile
+      if (window.innerWidth < 768) {
+        gsap.to(scrollContainerRef.current, {
+          x: () => -(scrollContainerRef.current!.scrollWidth - window.innerWidth),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            pin: true,
+            scrub: 1,
+            end: () => `+=${scrollContainerRef.current!.scrollWidth}`,
+          }
+        });
+      }
+
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section id="projects" ref={containerRef} className="py-24 px-6 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 grid-bg opacity-10" />
+      
+      <div className="max-w-7xl mx-auto">
+        {/* Title */}
+        <div className="text-center mb-16">
+          <h2 className="projects-title text-4xl font-bold mb-6">
+            Featured{' '}
+            <span className="bg-gradient-primary bg-clip-text text-transparent">
+              Projects
+            </span>
+          </h2>
+          <p className="projects-title text-muted-foreground text-lg max-w-2xl mx-auto">
+            A collection of my recent work showcasing modern web technologies and innovative design solutions.
+          </p>
+        </div>
+
+        {/* Projects Grid */}
+        <div ref={scrollContainerRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+          {projects.map((project) => (
+            <div
+              key={project.id}
+              className="project-card group glass-elevated rounded-2xl overflow-hidden hover:scale-105 transition-all duration-500 cursor-pointer"
+            >
+              {/* Project Image */}
+              <div className="relative overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Action Buttons */}
+                <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <Button variant="glass" size="icon" className="backdrop-blur-md">
+                    <ExternalLink size={16} />
+                  </Button>
+                  <Button variant="glass" size="icon" className="backdrop-blur-md">
+                    <Github size={16} />
+                  </Button>
+                </div>
+              </div>
+
+              {/* Project Info */}
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                  {project.description}
+                </p>
+                
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 text-xs bg-glass border border-glass-border/30 rounded-full text-primary"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Links */}
+                <div className="flex space-x-3">
+                  <Button variant="glow" size="sm" className="flex-1">
+                    <ExternalLink size={14} className="mr-1" />
+                    View Live
+                  </Button>
+                  <Button variant="glass" size="sm">
+                    <Github size={14} />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ProjectsSection;
