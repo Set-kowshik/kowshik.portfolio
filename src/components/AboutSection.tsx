@@ -140,7 +140,7 @@ const AboutSection: React.FC = () => {
               <div className="grid grid-cols-4 gap-4">
                 {techStack.map((tech, index) => <div key={tech.name} className="tech-icon glass rounded-lg p-4 text-center hover:glass-elevated transition-all duration-300 group cursor-pointer">
                     
-                    <div className="text-xs text-muted-foreground group-hover:text-foreground transition-colors mx-0 px-0 my-0 py-0 rounded-lg">
+                    <div className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">
                       {tech.name}
                     </div>
                   </div>)}
