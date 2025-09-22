@@ -3,14 +3,12 @@ import { Button } from '@/components/ui/button';
 import { ExternalLink, Github } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import TechStackIcons from './TechStackIcons';
 
 // Import project images
 import project1 from '@/assets/project-1.png';
 import project2 from '@/assets/project-2.png';
 import project3 from '@/assets/project-3.png';
-import project4 from '@/assets/project-4.png';
-import project5 from '@/assets/project-5.png';
-import project6 from '@/assets/project-6.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,33 +37,6 @@ const projects = [
     description: 'Transparent second-hand shopping with AI-powered condition reports and 3D visualization for sustainable fashion choices.',
     image: project3,
     tech: ['React', 'Three.js', 'TensorFlow'],
-    liveUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    id: 4,
-    title: 'Gaming Platform Interface',
-    description: 'Immersive gaming website with character customization and interactive elements.',
-    image: project4,
-    tech: ['React', 'GSAP', 'WebGL'],
-    liveUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    id: 5,
-    title: 'Animation Tools Platform',
-    description: 'Professional platform for web animation tools with modern glassmorphic design.',
-    image: project5,
-    tech: ['React', 'GSAP', 'Locomotive Scroll'],
-    liveUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    id: 6,
-    title: 'Animated Portfolio Tutorial',
-    description: 'Step-by-step tutorial platform for creating animated portfolios.',
-    image: project6,
-    tech: ['HTML', 'CSS', 'JavaScript'],
     liveUrl: '#',
     githubUrl: '#',
   },
@@ -184,16 +155,7 @@ const ProjectsSection: React.FC = () => {
                 </p>
                 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 text-xs bg-glass border border-glass-border/30 rounded-full text-primary"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                <TechStackIcons techStack={project.tech} />
 
                 {/* Links */}
                 <div className="flex space-x-3">
