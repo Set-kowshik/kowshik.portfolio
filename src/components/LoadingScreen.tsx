@@ -76,7 +76,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             KΔ
           </h1>
           <p className="text-xl text-muted-foreground tracking-wide">
-            KOWSHIK AKULA
+            KOWSHIK
           </p>
         </div>
 
