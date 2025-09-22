@@ -9,69 +9,76 @@ import TechStackIcons from './TechStackIcons';
 import project1 from '@/assets/project-1.png';
 import project2 from '@/assets/project-2.png';
 import project3 from '@/assets/project-3.png';
+
 gsap.registerPlugin(ScrollTrigger);
-const projects = [{
-  id: 1,
-  title: 'Local Community Hub',
-  description: 'Connect with your local community through an intuitive mobile platform that helps you find skills, events, and activities near you.',
-  image: project1,
-  tech: ['React Native', 'Node.js', 'MongoDB'],
-  liveUrl: '#',
-  githubUrl: '#'
-}, {
-  id: 2,
-  title: 'Wellness Companion',
-  description: 'A mindfulness and wellness app featuring stress management tools, meditation breaks, and sleep tracking for better mental health.',
-  image: project2,
-  tech: ['React Native', 'Firebase', 'HealthKit'],
-  liveUrl: '#',
-  githubUrl: '#'
-}, {
-  id: 3,
-  title: 'AI & 3D Fashion',
-  description: 'Transparent second-hand shopping with AI-powered condition reports and 3D visualization for sustainable fashion choices.',
-  image: project3,
-  tech: ['React', 'Three.js', 'TensorFlow'],
-  liveUrl: '#',
-  githubUrl: '#'
-}];
+
+const projects = [
+  {
+    id: 1,
+    title: 'Local Community Hub',
+    description: 'Connect with your local community through an intuitive mobile platform that helps you find skills, events, and activities near you.',
+    image: project1,
+    tech: ['React Native', 'Node.js', 'MongoDB'],
+    liveUrl: '#',
+    githubUrl: '#',
+  },
+  {
+    id: 2,
+    title: 'Wellness Companion',
+    description: 'A mindfulness and wellness app featuring stress management tools, meditation breaks, and sleep tracking for better mental health.',
+    image: project2,
+    tech: ['React Native', 'Firebase', 'HealthKit'],
+    liveUrl: '#',
+    githubUrl: '#',
+  },
+  {
+    id: 3,
+    title: 'AI & 3D Fashion',
+    description: 'Transparent second-hand shopping with AI-powered condition reports and 3D visualization for sustainable fashion choices.',
+    image: project3,
+    tech: ['React', 'Three.js', 'TensorFlow'],
+    liveUrl: '#',
+    githubUrl: '#',
+  },
+];
+
 const ProjectsSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Title animation
-      gsap.fromTo('.projects-title', {
-        opacity: 0,
-        y: 50
-      }, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 70%'
+      gsap.fromTo('.projects-title',
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 70%',
+          }
         }
-      });
+      );
 
       // Project cards stagger animation
-      gsap.fromTo('.project-card', {
-        opacity: 0,
-        y: 100,
-        rotationX: -15
-      }, {
-        opacity: 1,
-        y: 0,
-        rotationX: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: scrollContainerRef.current,
-          start: 'top 80%'
+      gsap.fromTo('.project-card',
+        { opacity: 0, y: 100, rotationX: -15 },
+        {
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: scrollContainerRef.current,
+            start: 'top 80%',
+          }
         }
-      });
+      );
 
       // Horizontal scroll for mobile
       if (window.innerWidth < 768) {
@@ -82,14 +89,18 @@ const ProjectsSection: React.FC = () => {
             trigger: containerRef.current,
             pin: true,
             scrub: 1,
-            end: () => `+=${scrollContainerRef.current!.scrollWidth}`
+            end: () => `+=${scrollContainerRef.current!.scrollWidth}`,
           }
         });
       }
+
     }, containerRef);
+
     return () => ctx.revert();
   }, []);
-  return <section id="projects" ref={containerRef} className="py-24 px-6 relative overflow-hidden">
+
+  return (
+    <section id="projects" ref={containerRef} className="py-24 px-6 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 grid-bg opacity-10" />
       
@@ -109,10 +120,18 @@ const ProjectsSection: React.FC = () => {
 
         {/* Projects Grid */}
         <div ref={scrollContainerRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-          {projects.map(project => <div key={project.id} className="project-card group glass-elevated rounded-2xl overflow-hidden transition-all duration-700 ease-out cursor-pointer hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20">
+          {projects.map((project) => (
+            <div
+              key={project.id}
+              className="project-card group glass-elevated rounded-2xl overflow-hidden transition-all duration-700 ease-out cursor-pointer hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20"
+            >
               {/* Project Image */}
               <div className="relative overflow-hidden">
-                <img src={project.image} alt={project.title} className="w-full h-48 object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-110" />
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-110"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out" />
                 
                 {/* Action Buttons */}
@@ -131,7 +150,9 @@ const ProjectsSection: React.FC = () => {
                 <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-all duration-300 ease-out transform group-hover:translate-x-1">
                   {project.title}
                 </h3>
-                
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
+                  {project.description}
+                </p>
                 
                 {/* Tech Stack */}
                 <TechStackIcons techStack={project.tech} />
@@ -147,9 +168,12 @@ const ProjectsSection: React.FC = () => {
                   </Button>
                 </div>
               </div>
-            </div>)}
+            </div>
+          ))}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default ProjectsSection;
