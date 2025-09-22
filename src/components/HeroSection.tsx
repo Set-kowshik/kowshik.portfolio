@@ -76,7 +76,17 @@ const HeroSection: React.FC = () => {
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>
           
-          <Button variant="glass" size="xl" className="group">
+          <Button 
+            variant="glass" 
+            size="xl" 
+            className="group"
+            onClick={() => {
+              const link = document.createElement('a');
+              link.href = '/resume.html';
+              link.download = 'Kowshik_Akula_Resume.html';
+              link.click();
+            }}
+          >
             <Download className="mr-2 h-4 w-4" />
             Download CV
           </Button>
