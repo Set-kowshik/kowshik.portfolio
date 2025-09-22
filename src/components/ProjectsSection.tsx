@@ -123,23 +123,23 @@ const ProjectsSection: React.FC = () => {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="project-card group glass-elevated rounded-2xl overflow-hidden hover:scale-105 transition-all duration-500 cursor-pointer"
+              className="project-card group glass-elevated rounded-2xl overflow-hidden transition-all duration-700 ease-out cursor-pointer hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20"
             >
               {/* Project Image */}
               <div className="relative overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-48 object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out" />
                 
                 {/* Action Buttons */}
-                <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Button variant="glass" size="icon" className="backdrop-blur-md">
+                <div className="absolute top-4 right-4 flex space-x-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                  <Button variant="glass" size="icon" className="backdrop-blur-md hover:scale-110 transition-transform duration-200">
                     <ExternalLink size={16} />
                   </Button>
-                  <Button variant="glass" size="icon" className="backdrop-blur-md">
+                  <Button variant="glass" size="icon" className="backdrop-blur-md hover:scale-110 transition-transform duration-200">
                     <Github size={16} />
                   </Button>
                 </div>
@@ -147,10 +147,10 @@ const ProjectsSection: React.FC = () => {
 
               {/* Project Info */}
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-all duration-300 ease-out transform group-hover:translate-x-1">
                   {project.title}
                 </h3>
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
                   {project.description}
                 </p>
                 
@@ -158,12 +158,12 @@ const ProjectsSection: React.FC = () => {
                 <TechStackIcons techStack={project.tech} />
 
                 {/* Links */}
-                <div className="flex space-x-3">
-                  <Button variant="glow" size="sm" className="flex-1">
+                <div className="flex space-x-3 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                  <Button variant="glow" size="sm" className="flex-1 hover:scale-105 transition-transform duration-200">
                     <ExternalLink size={14} className="mr-1" />
                     View Live
                   </Button>
-                  <Button variant="glass" size="sm">
+                  <Button variant="glass" size="sm" className="hover:scale-105 transition-transform duration-200">
                     <Github size={14} />
                   </Button>
                 </div>
