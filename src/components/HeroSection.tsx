@@ -2,31 +2,27 @@ import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Download } from 'lucide-react';
 import { gsap } from 'gsap';
-
 const HeroSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    const tl = gsap.timeline({ delay: 3.5 });
-
-    tl.fromTo([headlineRef.current, subtitleRef.current, buttonRef.current], 
-      {
-        opacity: 0,
-        y: 50,
-        filter: 'blur(10px)'
-      },
-      {
-        opacity: 1,
-        y: 0,
-        filter: 'blur(0px)',
-        duration: 1,
-        stagger: 0.2,
-        ease: 'power2.out'
-      }
-    );
+    const tl = gsap.timeline({
+      delay: 3.5
+    });
+    tl.fromTo([headlineRef.current, subtitleRef.current, buttonRef.current], {
+      opacity: 0,
+      y: 50,
+      filter: 'blur(10px)'
+    }, {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      duration: 1,
+      stagger: 0.2,
+      ease: 'power2.out'
+    });
 
     // Floating animation for background orbs
     gsap.to('.hero-orb', {
@@ -38,11 +34,8 @@ const HeroSection: React.FC = () => {
       ease: 'power1.inOut',
       stagger: 0.5
     });
-
   }, []);
-
-  return (
-    <section id="home" ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+  return <section id="home" ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Grid */}
       <div className="absolute inset-0 grid-bg opacity-20" />
       
@@ -53,21 +46,12 @@ const HeroSection: React.FC = () => {
       
       {/* Spline 3D Background */}
       <div className="absolute inset-0 opacity-60">
-        <iframe 
-          src='https://my.spline.design/orb-xkEj92wf5F7ywhasKaSzg9DV/' 
-          frameBorder='0' 
-          width='100%' 
-          height='100%'
-          className="w-full h-full"
-        />
+        <iframe src='https://my.spline.design/orb-xkEj92wf5F7ywhasKaSzg9DV/' frameBorder='0' width='100%' height='100%' className="w-full h-full" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         {/* Main Headline */}
-        <h1 
-          ref={headlineRef}
-          className="text-4xl md:text-7xl font-bold mb-6 leading-tight"
-        >
+        <h1 ref={headlineRef} className="text-4xl md:text-7xl font-bold mb-6 leading-tight">
           Hi, I'm{' '}
           <span className="bg-gradient-primary bg-clip-text text-transparent">
             Kowshik
@@ -78,19 +62,12 @@ const HeroSection: React.FC = () => {
         </h1>
 
         {/* Subtitle */}
-        <p 
-          ref={subtitleRef}
-          className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
-        >
+        <p ref={subtitleRef} className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
           Crafting digital experiences that inspire and engage through innovative design and cutting-edge technology.
         </p>
 
         {/* Contact Info */}
-        <div className="mb-12 space-y-2 text-sm text-muted-foreground">
-          <p>📧 g.kowshik00@gmail.com</p>
-          <p>📱 +91 9346062068</p>
-          <p>📍 Hyderabad, India</p>
-        </div>
+        
 
         {/* Call to Action Buttons */}
         <div ref={buttonRef} className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -112,8 +89,6 @@ const HeroSection: React.FC = () => {
           <div className="w-1 h-3 bg-gradient-primary rounded-full mt-2 animate-bounce" />
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
