@@ -1,12 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
 gsap.registerPlugin(ScrollTrigger);
-
 const Footer: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Floating particles animation
@@ -24,34 +21,36 @@ const Footer: React.FC = () => {
       });
 
       // Footer content animation
-      gsap.fromTo('.footer-content',
-        { opacity: 0, y: 60 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 90%',
-          }
+      gsap.fromTo('.footer-content', {
+        opacity: 0,
+        y: 60
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 90%'
         }
-      );
-
+      });
     }, containerRef);
-
     return () => ctx.revert();
   }, []);
-
-  const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
-  ];
-
-  return (
-    <footer ref={containerRef} className="relative py-16 px-6 overflow-hidden">
+  const navLinks = [{
+    name: 'Home',
+    href: '#home'
+  }, {
+    name: 'About',
+    href: '#about'
+  }, {
+    name: 'Projects',
+    href: '#projects'
+  }, {
+    name: 'Contact',
+    href: '#contact'
+  }];
+  return <footer ref={containerRef} className="relative py-16 px-6 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
       <div className="absolute inset-0 grid-bg opacity-5" />
@@ -77,28 +76,18 @@ const Footer: React.FC = () => {
           {/* Navigation */}
           <div className="mb-8">
             <nav className="flex flex-wrap justify-center gap-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium"
-                >
+              {navLinks.map(link => <a key={link.name} href={link.href} className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium">
                   {link.name}
-                </a>
-              ))}
+                </a>)}
             </nav>
           </div>
 
           {/* Copyright */}
           <div className="pt-8 border-t border-glass-border/20">
-            <p className="text-muted-foreground text-sm">
-              © 2024 Kowshik Akula. All rights reserved. Made with ❤️ in Hyderabad.
-            </p>
+            <p className="text-muted-foreground text-sm">© 2024 Kowshik . All rights reserved. Made with ❤️ in Hyderabad.</p>
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
