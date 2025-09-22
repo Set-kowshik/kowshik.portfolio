@@ -83,7 +83,8 @@ const HeroSection: React.FC = () => {
             onClick={() => {
               const link = document.createElement('a');
               link.href = '/resume.html';
-              link.download = 'Guguloth_kowshik.cv';
+              link.download = 'Guguloth_kowshik_CV.html';
+              link.target = '_blank';
               link.click();
             }}
           >
