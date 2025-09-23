@@ -44,11 +44,6 @@ const HeroSection: React.FC = () => {
       <div className="hero-orb absolute bottom-32 right-20 w-48 h-48 bg-accent/10 rounded-full blur-2xl" />
       <div className="hero-orb absolute top-1/2 right-1/4 w-32 h-32 bg-primary-glow/20 rounded-full blur-xl" />
       
-      {/* Spline 3D Background */}
-      <div className="absolute inset-0 opacity-60">
-        <iframe src='https://my.spline.design/orb-xkEj92wf5F7ywhasKaSzg9DV/' frameBorder='0' width='100%' height='100%' className="w-full h-full" />
-      </div>
-
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         {/* Main Headline */}
         <h1 ref={headlineRef} className="text-4xl md:text-7xl font-bold mb-6 leading-tight">
