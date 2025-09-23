@@ -18,23 +18,18 @@ interface TechStackIconsProps {
 
 const TechStackIcons: React.FC<TechStackIconsProps> = ({ techStack }) => {
   return (
-    <div className="flex flex-wrap gap-3 mb-4">
+    <div className="flex flex-wrap gap-2 mb-4">
       {techStack.map((tech) => {
         const IconComponent = techIcons[tech];
         return (
           <div
             key={tech}
-            className="group relative flex items-center gap-2 px-3 py-2 bg-glass border border-glass-border/30 rounded-full text-primary hover:bg-glass-elevated transition-all duration-300"
+            className="group flex items-center gap-2 px-3 py-1.5 bg-muted/40 border border-muted/60 rounded-full text-muted-foreground hover:bg-primary/10 hover:border-primary/30 hover:text-primary hover:scale-105 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
           >
             {IconComponent && (
-              <IconComponent size={16} className="text-primary group-hover:text-primary-glow transition-colors" />
+              <IconComponent size={14} className="transition-all duration-300 group-hover:rotate-12" />
             )}
-            <span className="text-xs font-medium">{tech}</span>
-            
-            {/* Tooltip */}
-            <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-background border border-glass-border px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
-              {tech}
-            </div>
+            <span className="text-xs font-medium transition-all duration-300">{tech}</span>
           </div>
         );
       })}
