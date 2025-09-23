@@ -123,47 +123,49 @@ const ProjectsSection: React.FC = () => {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="project-card group glass-elevated rounded-2xl overflow-hidden transition-all duration-700 ease-out cursor-pointer hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20"
+              className="project-card group glass-elevated rounded-2xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-pointer hover:-translate-y-2 hover:scale-[1.03] hover:shadow-2xl hover:shadow-primary/25 hover:rotate-[0.5deg]"
             >
               {/* Project Image */}
               <div className="relative overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-110"
+                  className="w-full h-48 object-cover transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-105 group-hover:brightness-125 group-hover:saturate-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-600 ease-[cubic-bezier(0.4,0,0.2,1)]" />
                 
                 {/* Action Buttons */}
-                <div className="absolute top-4 right-4 flex space-x-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
-                  <Button variant="glass" size="icon" className="backdrop-blur-md hover:scale-110 transition-transform duration-200">
-                    <ExternalLink size={16} />
+                <div className="absolute top-4 right-4 flex space-x-2 opacity-0 translate-y-3 scale-75 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-400 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] delay-100">
+                  <Button variant="glass" size="icon" className="backdrop-blur-lg border-white/20 hover:scale-110 hover:bg-white/20 transition-all duration-300">
+                    <ExternalLink size={16} className="text-white" />
                   </Button>
-                  <Button variant="glass" size="icon" className="backdrop-blur-md hover:scale-110 transition-transform duration-200">
-                    <Github size={16} />
+                  <Button variant="glass" size="icon" className="backdrop-blur-lg border-white/20 hover:scale-110 hover:bg-white/20 transition-all duration-300">
+                    <Github size={16} className="text-white" />
                   </Button>
                 </div>
               </div>
 
               {/* Project Info */}
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-all duration-300 ease-out transform group-hover:translate-x-1">
+              <div className="p-6 transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:bg-card/80">
+                <h3 className="text-xl font-semibold mb-3 transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:text-primary group-hover:translate-x-2">
                   {project.title}
                 </h3>
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:text-foreground/90 group-hover:translate-x-1">
                   {project.description}
                 </p>
                 
                 {/* Tech Stack */}
-                <TechStackIcons techStack={project.tech} />
+                <div className="transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:translate-x-1">
+                  <TechStackIcons techStack={project.tech} />
+                </div>
 
                 {/* Links */}
-                <div className="flex space-x-3 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500 ease-out">
-                  <Button variant="glow" size="sm" className="flex-1 hover:scale-105 transition-transform duration-200">
+                <div className="flex space-x-3 mt-4 opacity-80 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] delay-150">
+                  <Button variant="glow" size="sm" className="flex-1 hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300">
                     <ExternalLink size={14} className="mr-1" />
                     View Live
                   </Button>
-                  <Button variant="glass" size="sm" className="hover:scale-105 transition-transform duration-200">
+                  <Button variant="glass" size="sm" className="hover:scale-105 hover:bg-muted/60 transition-all duration-300">
                     <Github size={14} />
                   </Button>
                 </div>
