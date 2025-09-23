@@ -45,7 +45,7 @@ const HeroSection: React.FC = () => {
       <div className="hero-orb absolute top-1/2 right-1/4 w-32 h-32 bg-primary-glow/20 rounded-full blur-xl" />
       
       {/* Spline 3D Background */}
-      <div className="absolute inset-0 opacity-60">
+      <div className="spline-container absolute inset-0 opacity-60">
         <iframe src='https://my.spline.design/orb-xkEj92wf5F7ywhasKaSzg9DV/' frameBorder='0' width='100%' height='100%' className="w-full h-full pointer-events-none" />
       </div>
 

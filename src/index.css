@@ -155,19 +155,25 @@
     transition: var(--transition-smooth);
   }
 
-  /* Hide Spline watermark */
-  iframe[src*="spline.design"] {
+  /* Hide Spline watermark with blending overlay */
+  .spline-container {
     position: relative;
   }
   
-  iframe[src*="spline.design"]::after {
+  .spline-container::after {
     content: '';
     position: absolute;
     bottom: 0;
     right: 0;
     width: 150px;
-    height: 40px;
-    background: hsl(var(--background));
-    z-index: 10;
+    height: 50px;
+    background: linear-gradient(135deg, 
+      hsl(var(--background)) 0%, 
+      hsl(220 30% 4%) 50%, 
+      hsl(var(--background) / 0.95) 100%
+    );
+    backdrop-filter: blur(8px);
+    z-index: 2;
+    border-radius: 8px 0 0 8px;
   }
 }
