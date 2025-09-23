@@ -154,14 +154,20 @@
     filter: blur(0);
     transition: var(--transition-smooth);
   }
-}
 
-@layer base {
-  * {
-    @apply border-border;
+  /* Hide Spline watermark */
+  iframe[src*="spline.design"] {
+    position: relative;
   }
-
-  body {
-    @apply bg-background text-foreground;
+  
+  iframe[src*="spline.design"]::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 150px;
+    height: 40px;
+    background: hsl(var(--background));
+    z-index: 10;
   }
 }
