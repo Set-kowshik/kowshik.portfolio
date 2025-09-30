@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="en-US"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Case Study: Wellness Companion</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0px auto;
+            padding: 24px 40px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            line-height: 1.3;
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+            scroll-margin-top: 20px;
+        }
+        h1 {
+            font-size: 2.2em;
+            text-align: center;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 1.8em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        h3 {
+            font-size: 1.4em;
+        }
+        p {
+            margin-bottom: 1em;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        strong {
+            color: #2c3e50;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 0.5em;
+        }
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin-bottom: 2em;
+        }
+        .toc h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .toc ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        .toc ul li {
+            margin-bottom: 5px;
+        }
+        .toc ul ul {
+            padding-left: 20px;
+        }
+        .chart-wrapper {
+            width: 100%;
+            height: 450px;
+            margin: 30px auto;
+            box-sizing: border-box;
+        }
+        .data-source {
+            text-align: center;
+            font-size: 0.85em;
+            color: #7f8c8d;
+            margin-top: -20px;
+            margin-bottom: 30px;
+        }
+    </style>
+<link rel="stylesheet" href="https://static.skywork.ai/fe/skywork-site-assets/styles/doc_reference_style.css?v=1972983812731490304"/></head>
+<body>
+<div class="container">
+<h1 id="section-case-study-wellness-companion">Case Study: Wellness Companion</h1>
+<div class="toc">
+<h3 id="section-0-1">Table of Contents</h3>
+<ul>
+<li><a href="#section-project-overview">Project Overview</a></li>
+<li><a href="#section-my-role">My Role</a></li>
+<li><a href="#section-duration">Duration</a></li>
+<li><a href="#section-tools">Tools</a></li>
+<li><a href="#section-the-problem">The Problem</a></li>
+<li><a href="#section-the-goal">The Goal</a></li>
+<li><a href="#section-key-features-solutions">Key Features &amp; Solutions</a>
+<ul>
+<li><a href="#section-1-the-adaptive-daily-check-in">1. The Adaptive Daily Check-In</a></li>
+<li><a href="#section-2-the-integrated-wellness-dashboard">2. The Integrated Wellness Dashboard</a></li>
+<li><a href="#section-3-wellness-breaks-micro-dosing-mindfulness">3. “Wellness Breaks”: Micro-Dosing Mindfulness</a></li>
+</ul>
+</li>
+<li><a href="#section-design-process-research">Design Process &amp; Research</a>
+<ul>
+<li><a href="#section-competitive-analysis">Competitive Analysis</a></li>
+<li><a href="#section-user-personas">User Personas</a></li>
+<li><a href="#section-ideation-sketching">Ideation &amp; Sketching</a></li>
+<li><a href="#section-prototyping-testing">Prototyping &amp; Testing</a></li>
+<li><a href="#section-visual-design">Visual Design</a></li>
+<li><a href="#section-iteration">Iteration</a></li>
+</ul>
+</li>
+<li><a href="#section-learnings-next-steps">Learnings &amp; Next Steps</a></li>
+</ul>
+</div>
+<h2 id="section-project-overview">Project Overview</h2>
+<p>Wellness Companion is a conceptual mobile application designed to provide a personalized and holistic approach to mental health and well-being. In a world of increasing burnout and digital fatigue, generic wellness apps often fail because they offer a one-size-fits-all solution. This app redefines the experience by acting as a personal companion that understands and adapts to an individual’s unique daily needs—from their stress levels to their sleep patterns and nutritional goals. It integrates stress management, guided meditations, and intelligent tracking into a single, supportive ecosystem.</p>
+<h2 id="section-my-role">My Role</h2>
+<p>Lead Product Designer (UX/UI)</p>
+<h2 id="section-duration">Duration</h2>
+<p>10 Weeks, Summer 2025</p>
+<h2 id="section-tools">Tools</h2>
+<p>Figma, Framer, Adobe Illustrator, UX research methods (user interviews, surveys, personas, etc.)</p>
+<h2 id="section-the-problem">The Problem</h2>
+<p>The digital wellness market is saturated, yet many users struggle to build lasting habits. The core problems with existing solutions are:</p>
+<ul>
+<li><strong>Generic Content:</strong> Most apps are simply libraries of meditations or workouts. They don’t account for a user’s mood, energy level, or specific goals on any given day. This leads to low engagement and a feeling of being disconnected.</li>
+<li><strong>Lack of Integration:</strong> Mental health is deeply connected to physical health. Users are forced to juggle multiple apps—one for meditation (Calm), one for diet (MyFitnessPal), and another for sleep tracking—with no way to see the connections between them.</li>
+<li><strong>Overwhelming &amp; Intimidating:</strong> The pressure to complete long meditation sessions or complex wellness routines can be daunting for beginners, causing them to abandon their goals.</li>
+</ul>
+<h2 id="section-the-goal">The Goal</h2>
+<p>My goal was to design a wellness experience that feels less like a tool and more like a supportive friend. The design needed to be:</p>
+<ul>
+<li><strong>Deeply Personal:</strong> Create a system that tailors content and recommendations to the user’s real-time emotional and physical state.</li>
+<li><strong>Holistic:</strong> Seamlessly integrate key pillars of wellness (mindfulness, sleep, nutrition) into one intuitive view.</li>
+<li><strong>Accessible:</strong> Lower the barrier to entry with short, effective activities that fit into any schedule.</li>
+<li><strong>Encouraging:</strong> Build a positive, non-judgmental environment that motivates users to stay consistent.</li>
+</ul>
+<h2 id="section-key-features-solutions">Key Features &amp; Solutions</h2>
+<p>I designed several core features to directly address the identified user pain points.</p>
+<h3 id="section-1-the-adaptive-daily-check-in">1. The Adaptive Daily Check-In</h3>
+<p><strong>Problem:</strong> Generic apps don’t know if a user is having a great day or a stressful one.</p>
+<p><strong>Solution:</strong> The app experience starts with a simple, conversational prompt: <em>“How are you feeling today?”</em> Based on the user’s response (e.g., “Anxious,” “Tired,” “Motivated”), the AI companion curates a personalized <em>“Today’s Plan.”</em> This could include a 5-minute breathing exercise for anxiety, a calming sleep story for tiredness, or an energizing meditation for a motivated day.</p>
+<p><strong>Impact:</strong> This makes the app feel proactive and empathetic. It delivers immediate, relevant value and dramatically increases the likelihood of user engagement.</p>
+<h3 id="section-2-the-integrated-wellness-dashboard">2. The Integrated Wellness Dashboard</h3>
+<p><strong>Problem:</strong> Users can’t see how their actions (like meditation) affect outcomes (like sleep).</p>
+<p><strong>Solution:</strong> I designed a clean, visual dashboard that connects the dots. It elegantly displays correlations between the user’s daily mood, mindfulness minutes, sleep quality, and even logged meals.</p>
+<p><strong>Impact:</strong> This dashboard empowers users with powerful self-awareness. They can see tangible proof that <em>“when I take a 10-minute walk after lunch, my afternoon stress level decreases,”</em> which reinforces positive habits.</p>
+<h3 id="section-3-wellness-breaks-micro-dosing-mindfulness">3. “Wellness Breaks”: Micro-Dosing Mindfulness</h3>
+<p><strong>Problem:</strong> <em>“I don’t have 20 minutes to meditate”</em> is a common reason users quit.</p>
+<p><strong>Solution:</strong> I designed a core feature called <em>“Wellness Breaks”</em>—a library of effective, science-backed activities that are all under 5 minutes. This includes things like a 2-minute guided breathing session, a 3-minute mindful stretch for your desk, or a 1-minute gratitude journal entry.</p>
+<p><strong>Impact:</strong> This removes the biggest barrier to entry—time. It makes wellness accessible to even the busiest professionals and students, helping them build consistency through small, achievable actions.</p>
+<h2 id="section-design-process-research">Design Process &amp; Research</h2>
+<p>My process was rooted in creating a calm and intuitive user experience. I began with competitive analysis of apps like Headspace and Calm to identify market gaps. I then developed user personas like <em>“Anjali, the Overwhelmed Student”</em> to guide my design decisions. The entire UI was designed in Figma using a soothing color palette (soft blues, greens, and warm neutrals) and gentle typography to create a safe, non-judgmental space. An interactive prototype was built in Framer to test the flow of the personalized onboarding and daily check-in, which was refined based on user feedback.</p>
+<h3 id="section-competitive-analysis">Competitive Analysis</h3>
+<p>I analyzed popular wellness apps to understand their strengths and weaknesses. For example, Headspace and Calm excel at providing high-quality meditation content, but they lack personalization and integration with other wellness areas. I also looked at fitness and habit-tracking apps to see how they handle data visualization and habit formation. This research revealed a clear gap: <strong>a truly personalized, all-in-one wellness companion was missing in the market.</strong></p>
+<h3 id="section-user-personas">User Personas</h3>
+<p>To keep the design user-centered, I created detailed personas representing the target audience. One persona was <strong>Anjali</strong>, a 22-year-old college student who feels overwhelmed by exams and struggles with sleep. Another was <strong>Mike</strong>, a 35-year-old professional who wants to stay healthy but has a packed schedule. These personas helped me make design decisions with specific user needs in mind (e.g. Anjali needs quick stress relief before bed, Mike needs short exercises he can do during work breaks).</p>
+<p>User personas typically include key attributes such as demographics, goals, and frustrations, as illustrated in the template below.</p>
+<div class="chart-wrapper" id="chart-persona"></div>
+<div class="data-source">Data Source: <em data-ref-id="1972983804338688000"></em>, <em data-ref-id="1972983804338688001"></em></div>
+<h3 id="section-ideation-sketching">Ideation &amp; Sketching</h3>
+<p>I started ideating on paper, sketching out possible screen flows and interface ideas. Early sketches explored how the daily check-in could work (maybe a simple mood slider or a set of emoji buttons), and how the dashboard could visualize data (perhaps cards for each wellness category). I also brainstormed ways to make the app feel friendly—maybe through a chatbot-like companion or encouraging messages.</p>
+<figure style="text-align: center;">
+<img alt="Brainstorming session sticky note grid for a wellness app" src="https://agents-download.skywork.ai/image/rt/cae6b383f5c4877251a86d309b174e22.jpg" style="max-height: 280px; max-width: 50vw; max-height: 280px; max-width: 100%;"/>
+<figcaption>A grid of sticky notes from a brainstorming session organized into columns and rows</figcaption>
+</figure>
+<h3 id="section-prototyping-testing">Prototyping &amp; Testing</h3>
+<p>Using Figma, I built wireframes and then high-fidelity mockups of the key screens: onboarding, the daily check-in, the dashboard, and a sample activity screen. I then created an interactive prototype in Framer to simulate the user journey. This prototype was tested with a small group of users (friends and family in the target demographic). Their feedback was invaluable—for instance, users loved the daily check-in idea but suggested making the mood options more expressive, and they found the dashboard informative but wanted an explanation of how the correlations were calculated. I iterated on the design to address these points (adding more mood icons and a brief tutorial on the dashboard insights).</p>
+<h3 id="section-visual-design">Visual Design</h3>
+<p>The visual design was intentionally calming. I chose a color palette dominated by soft blues and greens—colors known to evoke calmness and health <em data-ref-id="1972983804338688002"></em> <em data-ref-id="1972983804338688003"></em>—with warm neutral accents to avoid a clinical feel. The typography is clean and friendly (a sans-serif font with rounded edges). I incorporated subtle animations (like a gentle breathing animation on the meditation screen) to enhance the tranquil atmosphere. Throughout the UI, I maintained consistency in layout and iconography to ensure a seamless, intuitive experience.</p>
+<h3 id="section-iteration">Iteration</h3>
+<p>Based on user testing and feedback, I refined the design. The onboarding was simplified to ask only essential questions (to avoid user fatigue), and a progress indicator was added to reassure users of how much more is left. The daily check-in screen was tweaked to include a short description of each mood option (so users know which activities correspond to “Anxious” vs “Stressed,” for example). The dashboard’s data visualizations were adjusted for clarity, using familiar icons (a moon for sleep, a leaf for nutrition, etc.) alongside the charts. These iterative improvements ensured the final design was as user-friendly and effective as possible.</p>
+<h2 id="section-learnings-next-steps">Learnings &amp; Next Steps</h2>
+<p>This project was a deep dive into designing for emotion and empathy. The biggest takeaway was that in the wellness space, the tone of the UX writing and the feel of the interactions are as crucial as the features themselves. Every microcopy phrase and animation was chosen to reinforce a sense of support and positivity. For example, instead of saying “You missed 3 days of meditation,” the app might say “Let’s get back on track—how about a quick session now?” to motivate without guilt.</p>
+<p><strong>Challenges:</strong> The main challenge was designing a data-rich dashboard that felt simple and encouraging, not clinical or overwhelming. I addressed this by focusing on visual storytelling—using charts that tell a quick story (like a smiley face that changes with the user’s mood trend) and limiting the amount of data shown at once. Another challenge was maintaining a balance between personalization and privacy. Since the app deals with sensitive data (moods, health info), I had to ensure the design reassures users that their data is safe and only used to help them (this led to including a clear privacy note and giving users control over what data to share).</p>
+<p><strong>Future Roadmap:</strong></p>
+<ul>
+<li><strong>Wearable Integration:</strong> Sync with devices like the Apple Watch or Fitbit to automate activity and sleep tracking. This would reduce manual input and provide even more personalized insights (e.g., detecting a restless night and suggesting a relaxation exercise).</li>
+<li><strong>Expanded Nutrition:</strong> Develop the personalized diet/nutrition module further, offering meal suggestions based on wellness goals. For instance, if the user’s mood and energy data indicate a slump, the app could recommend a healthy snack or meal.</li>
+<li><strong>Guided Journeys:</strong> Create multi-day programs like a <em>“7-Day Guide to Better Sleep”</em> or a <em>“2-Week Intro to Mindfulness.”</em> These would provide structured yet flexible paths for users to deepen their wellness practice over time.</li>
+<li><strong>Community &amp; Social Features:</strong> In the future, adding a light social component (with user control) could help—such as the ability to share achievements with a friend or join a challenge group, providing social support which is known to boost wellness habits.</li>
+</ul>
+<p>By continuously iterating and adding features that respect user needs and boundaries, Wellness Companion aims to evolve into a truly indispensable companion on the user’s journey to a healthier mind and body. The core principle remains: <strong>to treat each user as a unique individual, offering the right support at the right time</strong>, just like a good friend would.</p>
+<div class="reference-container">
+			<div class="reference-section">
+				<h3 class="reference-title">Reference</h3>
+				<div class="reference-list">
+					
+					<div class="reference-item">
+						<span class="reference-number">[1]</span>
+						<div class="reference-content">
+							<div class="reference-text-container">
+								<span class="reference-text">Designing a Wellness App while nothing seems to be well - UX Planet</span>
+									
+							</div>
+							<a href="https://uxplanet.org/designing-a-wellness-app-while-nothing-seems-to-be-well-7f967114d52f" class="reference-link" target="_blank">
+								https://uxplanet.org/designing-a-wellness-app-while-nothing-seems-to-be-well-7f967114d52f
+							</a>
+						</div>
+					</div>
+					
+					<div class="reference-item">
+						<span class="reference-number">[2]</span>
+						<div class="reference-content">
+							<div class="reference-text-container">
+								<span class="reference-text">How AI-Powered Personalization Transforms User Engagement in ...</span>
+									
+							</div>
+							<a href="https://ciphercross.com/blog/how-ai-powered-personalization-transforms-user-engagement-in-wellness-apps" class="reference-link" target="_blank">
+								https://ciphercross.com/blog/how-ai-powered-personalization-transforms-user-engagement-in-wellness-apps
+							</a>
+						</div>
+					</div>
+					
+					<div class="reference-item">
+						<span class="reference-number">[3]</span>
+						<div class="reference-content">
+							<div class="reference-text-container">
+								<span class="reference-text">UI/UX Case study: Unlocking mental wellness: Zenly&#39;s journey of ...</span>
+									
+							</div>
+							<a href="https://medium.com/design-bootcamp/ui-ux-case-study-unlocking-mental-wellness-zenlys-journey-of-seamless-journaling-and-crisis-a65b60040059" class="reference-link" target="_blank">
+								https://medium.com/design-bootcamp/ui-ux-case-study-unlocking-mental-wellness-zenlys-journey-of-seamless-journaling-and-crisis-a65b60040059
+							</a>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div></div>
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Chart: User Persona Structure
+            var chartPersona = echarts.init(document.getElementById('chart-persona'));
+            var optionPersona = {
+                title: {
+                    text: 'User Persona Structure for Wellness Companion',
+                    left: 'center',
+                    textStyle: { fontSize: 18, fontWeight: 'normal' }
+                },
+                tooltip: { show: false },
+                animation: false,
+                series: [{
+                    type: 'graph',
+                    layout: 'none',
+                    symbolSize: 80,
+                    roam: false,
+                    label: {
+                        show: true,
+                        fontSize: 12,
+                        color: '#fff',
+                        formatter: function(params) {
+                            return params.name.replace(/ /g, '\n');
+                        }
+                    },
+                    edgeSymbol: ['none', 'arrow'],
+                    edgeSymbolSize: [4, 10],
+                    data: [
+                        { name: 'User Persona', x: 400, y: 225, symbolSize: 120, itemStyle: { color: '#34495e' } },
+                        { name: 'Demographics', x: 200, y: 100, itemStyle: { color: '#3498db' } },
+                        { name: 'Goals', x: 400, y: 100, itemStyle: { color: '#2ecc71' } },
+                        { name: 'Frustrations', x: 600, y: 100, itemStyle: { color: '#e74c3c' } },
+                        { name: 'Motivations', x: 200, y: 350, itemStyle: { color: '#9b59b6' } },
+                        { name: 'Pain Points', x: 400, y: 350, itemStyle: { color: '#f1c40f' } },
+                        { name: 'Bio', x: 600, y: 350, itemStyle: { color: '#1abc9c' } }
+                    ],
+                    links: [
+                        { source: 'User Persona', target: 'Demographics' },
+                        { source: 'User Persona', target: 'Goals' },
+                        { source: 'User Persona', target: 'Frustrations' },
+                        { source: 'User Persona', target: 'Motivations' },
+                        { source: 'User Persona', target: 'Pain Points' },
+                        { source: 'User Persona', target: 'Bio' }
+                    ]
+                }]
+            };
+            chartPersona.setOption(optionPersona);
+
+            window.addEventListener('resize', function () {
+                chartPersona.resize();
+            });
+        });
+    </script>
+
+</body></html>

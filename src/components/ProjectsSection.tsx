@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Github } from 'lucide-react';
 import { gsap } from 'gsap';
@@ -19,7 +20,7 @@ const projects = [
     description: 'Connect with your local community through an intuitive mobile platform that helps you find skills, events, and activities near you.',
     image: project1,
     tech: ['React Native', 'Node.js', 'MongoDB'],
-    liveUrl: '#',
+    caseStudyId: 'localhub',
     githubUrl: '#',
   },
   {
@@ -28,7 +29,7 @@ const projects = [
     description: 'A mindfulness and wellness app featuring stress management tools, meditation breaks, and sleep tracking for better mental health.',
     image: project2,
     tech: ['React Native', 'Firebase', 'HealthKit'],
-    liveUrl: '#',
+    caseStudyId: 'wellness-companion',
     githubUrl: '#',
   },
   {
@@ -37,12 +38,13 @@ const projects = [
     description: 'Transparent second-hand shopping with AI-powered condition reports and 3D visualization for sustainable fashion choices.',
     image: project3,
     tech: ['React', 'Three.js', 'TensorFlow'],
-    liveUrl: '#',
+    caseStudyId: 'veriwear',
     githubUrl: '#',
   },
 ];
 
 const ProjectsSection: React.FC = () => {
+  const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -123,6 +125,7 @@ const ProjectsSection: React.FC = () => {
           {projects.map((project) => (
             <div
               key={project.id}
+              onClick={() => navigate(`/case-study/${project.caseStudyId}`)}
               className="project-card group glass-elevated rounded-2xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-pointer hover:-translate-y-2 hover:scale-[1.03] hover:shadow-2xl hover:shadow-primary/25 hover:rotate-[0.5deg]"
             >
               {/* Project Image */}
@@ -161,11 +164,24 @@ const ProjectsSection: React.FC = () => {
 
                 {/* Links */}
                 <div className="flex space-x-3 mt-4 opacity-80 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] delay-150">
-                  <Button variant="glow" size="sm" className="flex-1 hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300">
+                  <Button 
+                    variant="glow" 
+                    size="sm" 
+                    className="flex-1 hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/case-study/${project.caseStudyId}`);
+                    }}
+                  >
                     <ExternalLink size={14} className="mr-1" />
-                    View Live
+                    Case Study
                   </Button>
-                  <Button variant="glass" size="sm" className="hover:scale-105 hover:bg-muted/60 transition-all duration-300">
+                  <Button 
+                    variant="glass" 
+                    size="sm" 
+                    className="hover:scale-105 hover:bg-muted/60 transition-all duration-300"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     <Github size={14} />
                   </Button>
                 </div>

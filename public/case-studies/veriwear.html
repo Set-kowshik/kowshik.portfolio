@@ -1,0 +1,934 @@
+<!DOCTYPE html><html lang="en-US"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Designing VeriWear: A Case Study in Reimagining Second-Hand Fashion E-Commerce</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<link href="https://static.skywork.ai/fe/skywork-site-assets/styles/doc_reference_style.css?v=1972988906939555840" rel="stylesheet"/><style>html {
+    box-sizing: border-box;
+    }
+*, *::before, *::after {
+    box-sizing: inherit;
+    }
+.cover-container {
+    height: 1131.4px;
+    position: relative;
+    background: linear-gradient(135deg, #2C5F7C 0%, #1a4a5c 100%);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 0 auto;
+    max-width: 880px;
+    padding: 0;
+    }
+.cover-container .background-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100%;
+    background-image: url(https://agents-download.skywork.ai/image/rt/cfaca007d0c87eb2d32236c8a7caa142.jpg);
+    background-size: cover;
+    background-position: center;
+    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+    opacity: 0.85;
+    }
+.cover-container .background-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(44, 95, 124, 0.7) 0%, rgba(26, 74, 92, 0.8) 100%);
+    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+.cover-container .geometric-accent {
+    position: absolute;
+    top: 20%;
+    right: 15%;
+    width: 200px;
+    height: 200px;
+    background: rgba(232, 244, 248, 0.1);
+    clip-path: polygon(0% 0%, 80% 20%, 100% 100%, 20% 80%);
+    transform: rotate(15deg);
+    }
+.cover-container .geometric-accent-2 {
+    position: absolute;
+    bottom: 25%;
+    right: 5%;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.05);
+    clip-path: polygon(30% 0%, 100% 0%, 70% 100%, 0% 100%);
+    transform: rotate(-10deg);
+    }
+.cover-container .title-section {
+    position: absolute;
+    top: 15%;
+    left: 8%;
+    width: 55%;
+    z-index: 10;
+    background: rgba(44, 95, 124, 0.85);
+    padding: 3rem 2.5rem;
+    clip-path: polygon(0% 0%, 95% 0%, 100% 15%, 85% 100%, 0% 100%);
+    backdrop-filter: blur(10px);
+    border-left: 4px solid #E8F4F8;
+    }
+.cover-container .main-title {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 3.2rem;
+    color: #FFF;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+.cover-container .subtitle {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 1.4rem;
+    color: #E8F4F8;
+    line-height: 1.4;
+    margin-bottom: 2rem;
+    }
+.cover-container .case-study-label {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #E8F4F8;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+    }
+.cover-container .metadata-section {
+    position: absolute;
+    bottom: 8%;
+    left: 8%;
+    z-index: 10;
+    background: rgba(232, 244, 248, 0.95);
+    padding: 1.5rem 2rem;
+    clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
+    min-width: 300px;
+    }
+.cover-container .report-type {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #2C5F7C;
+    margin-bottom: 0.5rem;
+    }
+.cover-container .date-info {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #1a4a5c;
+    }
+.cover-container .digital-accent-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 40%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #E8F4F8 50%, transparent 100%);
+    transform: translatey(-50%) skewy(-2deg);
+    }
+.cover-container .tech-pattern {
+    position: absolute;
+    top: 30%;
+    right: 25%;
+    width: 100px;
+    height: 100px;
+    background: repeating-linear-gradient(45deg, rgba(232, 244, 248, 0.1) 0, rgba(232, 244, 248, 0.1) 2px, transparent 2px, transparent 8px);
+    clip-path: circle(50%);
+    animation: pulse 3s ease-in-out infinite;
+    }
+.cover-container .innovation-badge {
+    position: absolute;
+    top: 8%;
+    right: 8%;
+    background: rgba(232, 244, 248, 0.9);
+    color: #2C5F7C;
+    padding: 0.8rem 1.5rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+    z-index: 15;
+    }
+.toc-container {
+    min-height: 1131.4px;
+    position: relative;
+    background: linear-gradient(135deg, #2C5F7C 0%, #1a4a5c 100%);
+    margin: 0 auto;
+    padding: 80px 100px;
+    color: #fff;
+    overflow: hidden;
+    max-width: 880px;
+    }
+.toc-container .toc-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100%;
+    background: rgba(232, 244, 248, 0.05);
+    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+    z-index: 1;
+    }
+.toc-container .geometric-accent {
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    width: 180px;
+    height: 180px;
+    background: rgba(232, 244, 248, 0.08);
+    clip-path: polygon(0% 0%, 80% 20%, 100% 100%, 20% 80%);
+    transform: rotate(15deg);
+    z-index: 1;
+    }
+.toc-container .geometric-accent-2 {
+    position: absolute;
+    bottom: 20%;
+    right: 5%;
+    width: 130px;
+    height: 130px;
+    background: rgba(255, 255, 255, 0.05);
+    clip-path: polygon(30% 0%, 100% 0%, 70% 100%, 0% 100%);
+    transform: rotate(-10deg);
+    z-index: 1;
+    }
+.toc-container .digital-accent-line {
+    position: absolute;
+    top: 60%;
+    left: 0;
+    width: 40%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #E8F4F8 50%, transparent 100%);
+    transform: translatey(-50%) skewy(-2deg);
+    z-index: 1;
+    }
+.toc-container .contents-wrapper {
+    position: relative;
+    z-index: 2;
+    }
+.toc-container h1 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 2.8rem;
+    color: #FFF;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+.toc-container h1::after {
+    content: "";
+    display: block;
+    width: 80%;
+    height: 4px;
+    background-color: #E8F4F8;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    }
+.toc-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    }
+.toc-container li {
+    margin-bottom: 0.6rem;
+    padding-left: 0;
+    position: relative;
+    }
+.toc-container .level-1 {
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding-left: 0;
+    }
+.toc-container .level-2 {
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-left: 1.5rem;
+    margin-top: 0.7rem;
+    position: relative;
+    }
+.toc-container .level-2::before {
+    content: "";
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(232, 244, 248, 0.7);
+    transform: translatey(-50%);
+    clip-path: polygon(0% 0%, 80% 20%, 100% 100%, 20% 80%);
+    }
+.toc-container a {
+    color: #E8F4F8;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: block;
+    padding: 4px 0;
+    }
+.toc-container a:hover {
+    color: #fff;
+    transform: translatex(5px);
+    }
+.toc-container .level-1 a {
+    border-bottom: 1px solid rgba(232, 244, 248, 0.3);
+    padding-bottom: 6px;
+    }
+.container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 24px 40px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    }
+.chart-container {
+    position: relative;
+    margin: 3em auto;
+    max-width: 700px;
+    min-height: 200px;
+    max-height: 400px;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    }
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    }
+h1, h2, h3 {
+    color: #2c3e50;
+    line-height: 1.3;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    }
+h1 {
+    font-size: 2.2em;
+    text-align: center;
+    margin-top: 0;
+    }
+h2 {
+    font-size: 1.8em;
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 0.3em;
+    }
+h3 {
+    font-size: 1.4em;
+    }
+p {
+    margin-bottom: 1em;
+    }
+a {
+    color: #3498db;
+    text-decoration: none;
+    }
+a:hover {
+    text-decoration: underline;
+    }
+strong {
+    color: #2c3e50;
+    }
+ul, ol {
+    padding-left: 20px;
+    }
+li {
+    margin-bottom: 0.5em;
+    }
+.toc {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 15px 25px;
+    margin-bottom: 30px;
+    }
+.toc h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: none;
+    }
+.toc ul {
+    padding-left: 20px;
+    margin: 0;
+    }
+.toc ul ul {
+    padding-left: 20px;
+    }
+.toc li {
+    margin-bottom: 8px;
+    }
+.chart-wrapper {
+    width: 100%;
+    height: 450px;
+    margin: 30px 0;
+    }
+.data-source {
+    text-align: center;
+    font-size: 0.9em;
+    color: #7f8c8d;
+    margin-top: -20px;
+    margin-bottom: 30px;
+    }
+.timeline {
+    position: relative;
+    padding: 20px 0;
+    }
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #e9ecef;
+    border-radius: 2px;
+    }
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 50px;
+    }
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: 5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #3498db;
+    border: 3px solid #fff;
+    z-index: 1;
+    }
+.timeline-item h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: #3498db;
+    }
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        }
+    .cover-container, .toc-container {
+        width: 100%;
+        height: 100vh;
+        /* 确保适应页面高度 */
+        overflow: hidden;
+        /* 避免内容溢出 */
+        page-break-after: always !important;
+        -webkit-print-color-adjust: exact !important;
+        }
+    }</style></head>
+<body class=""><div class="cover-container">
+<div class="background-image"></div>
+<div class="background-overlay"></div>
+<div class="geometric-accent"></div>
+<div class="geometric-accent-2"></div>
+<div class="digital-accent-line"></div>
+<div class="tech-pattern"></div>
+<div class="innovation-badge">
+            Digital Innovation
+        </div>
+<div class="title-section">
+<div class="case-study-label">Research Case Study</div>
+<h1 class="main-title" data-sk-edited="">Designing Ai and 3D Fashion</h1>
+<p class="subtitle">Reimagining Second-Hand Fashion E-Commerce Through Digital Innovation and Sustainable Technology</p>
+</div>
+<div class="metadata-section">
+<div class="report-type">Strategic Design Analysis</div>
+<div class="date-info">September 2025</div>
+</div>
+</div><div class="toc-container" style="min-height: 1100px;">
+<div class="geometric-accent"></div>
+<div class="geometric-accent-2"></div>
+<div class="digital-accent-line"></div>
+<div class="contents-wrapper">
+<h1>Table of Contents</h1>
+<ul>
+<li class="level-1"><a href="#section-project-overview">Project Overview</a></li>
+<li class="level-1"><a href="#section-the-problem-trust-and-fit-challenges-in-second-hand-fashion">The Problem: Trust and Fit Challenges in Second-Hand Fashion</a></li>
+<li class="level-1"><a href="#section-the-goal-reimagining-the-second-hand-shopping-experience">The Goal: Reimagining the Second-Hand Shopping Experience</a></li>
+<li class="level-1"><a href="#section-research-and-context">Research and Context</a></li>
+<li class="level-1"><a href="#section-ideation-and-concept-development">Ideation and Concept Development</a></li>
+<li class="level-1"><a href="#section-design-solutions-and-features">Design Solutions and Features</a></li>
+<li class="level-2"><a href="#section-1-ai-authenti-scan-objective-condition-reports">1. AI Authenti-Scan: Objective Condition Reports</a></li>
+<li class="level-2"><a href="#section-2-virtual-try-on-room-3d-fit-visualization">2. Virtual Try-On Room: 3D Fit Visualization</a></li>
+<li class="level-2"><a href="#section-3-sustainable-impact-score-gamifying-sustainability">3. Sustainable Impact Score: Gamifying Sustainability</a></li>
+<li class="level-1"><a href="#section-user-interface-ux-ui-design-decisions">User Interface (UX/UI) Design Decisions</a></li>
+<li class="level-1"><a href="#section-prototyping-and-testing">Prototyping and Testing</a></li>
+<li class="level-1"><a href="#section-outcomes-and-reflections">Outcomes and Reflections</a></li>
+<li class="level-1"><a href="#section-conclusion">Conclusion</a></li>
+<li class="level-2">Reference</li>
+</ul>
+</div>
+</div><div class="container">
+<h1 id="section-main-title">Designing VeriWear: A Case Study in Reimagining Second-Hand Fashion E-Commerce</h1>
+<h2 id="section-project-overview">Project Overview</h2>
+<p>VeriWear is a conceptual mobile e-commerce platform aiming to <strong>revolutionize the second-hand fashion industry</strong> by tackling its two biggest challenges: <strong>trust</strong> and <strong>fit</strong>. In an era where sustainable fashion is on the rise, buying pre-owned clothing online can still feel like a gamble due to uncertainty about an item’s condition and whether it will fit. VeriWear addresses these pain points by integrating cutting-edge technology to create a <strong>transparent and immersive shopping experience</strong>. It uses AI to generate objective condition reports and 3D visualization for virtual try-on, making the choice to shop sustainably as <strong>confident and exciting as buying new</strong>.</p>
+<p><strong>My Role:</strong> Lead Product Designer (UX/UI)<br/>
+<strong>Duration:</strong> 12 Weeks (Fall 2025)<br/>
+<strong>Tools:</strong> Figma, Framer, Adobe Illustrator (Conceptual use of AI/3D modeling in design process)<br/>
+<strong>UX Principles:</strong> User-centered design, visual hierarchy, consistency, accessibility, and innovation.</p>
+<h2 id="section-the-problem-trust-and-fit-challenges-in-second-hand-fashion">The Problem: Trust and Fit Challenges in Second-Hand Fashion</h2>
+<p>The second-hand clothing market is booming, but the digital experience is often <strong>flawed and discouraging</strong> for consumers. Key pain points identified include:</p>
+<ul>
+<li><strong>The Trust Gap:</strong> Traditional online listings rely on subjective descriptions like “gently used” or “good condition,” which can be unreliable. Buyers have no guarantee of an item’s true state and may receive clothes with <strong>undisclosed stains, pilling, or tears</strong>, leading to frustration and returns. This lack of transparency erodes trust in the platform and the seller.</li>
+<li><strong>The Fit Uncertainty:</strong> Sizing is inconsistent across brands and vintages, and shoppers cannot physically try on items. Fit issues are <strong>the single biggest barrier to online apparel shopping</strong> and a primary driver of costly returns  . The inability to see how a garment will look on one’s body causes anxiety and often results in multiple sizes ordered or immediate returns, which is inconvenient and environmentally unfriendly.</li>
+<li><strong>A Lackluster Experience:</strong> Many second-hand marketplaces feel like simple, utilitarian catalogs. They lack the <strong>joy of discovery and the premium feel</strong> that would attract a wider audience to pre-owned fashion. The current user experience is often cluttered or uninspiring, failing to engage users or make them feel excited about sustainable shopping.</li>
+</ul>
+<p>These issues create a significant barrier for consumers considering second-hand options. Without trust in product quality or confidence in fit, many shoppers stick to buying new, even if they value sustainability. VeriWear was conceived to bridge this gap.</p>
+<h2 id="section-the-goal-reimagining-the-second-hand-shopping-experience">The Goal: Reimagining the Second-Hand Shopping Experience</h2>
+<p>The objective for VeriWear was to design a platform that would <strong>completely reimagine the second-hand shopping experience</strong>, making it the <strong>preferred choice</strong> for the modern consumer. The core design goals were:</p>
+<ul>
+<li><strong>Establish Radical Transparency:</strong> Replace subjective seller opinions with <strong>objective, data-driven facts</strong> about a garment’s condition. Buyers should know exactly what they are getting, down to the smallest detail.</li>
+<li><strong>Eliminate Fit Anxiety:</strong> Provide an <strong>immersive virtual try-on</strong> feature so users can confidently assess how an item will look and fit on their unique body shape. This aims to drastically reduce uncertainty and returns.</li>
+<li><strong>Elevate the User Experience:</strong> Create a <strong>sophisticated, engaging, and enjoyable</strong> platform that feels premium and inspires delight. The design should encourage exploration and make shopping for second-hand items as exciting as buying brand new.</li>
+<li><strong>Promote Sustainable Habits:</strong> Clearly communicate and reward the <strong>positive environmental impact</strong> of choosing pre-owned fashion. By making sustainability tangible and rewarding, the platform should motivate users to embrace circular fashion as a lifestyle.</li>
+</ul>
+<p>By achieving these goals, VeriWear would enable consumers to shop second-hand with the same confidence and satisfaction as buying new, thereby <strong>driving adoption of sustainable fashion</strong>.</p>
+<h2 id="section-research-and-context">Research and Context</h2>
+<p>Before diving into design, I conducted thorough research to understand the context of second-hand fashion e-commerce and validate the problem space. Key findings and sources included:</p>
+<ul>
+<li><strong>Market Growth and Consumer Sentiment:</strong> The second-hand clothing market is growing rapidly worldwide. It is projected to reach <strong>$45 billion by 2029</strong>, up from $25 billion in 2024 . Younger consumers, in particular, are increasingly drawn to resale platforms for affordable, unique, and eco-friendly fashion options . This growth indicates a strong demand, but also a need for better user experiences to capture mainstream audiences.</li>
+</ul>
+<div class="chart-wrapper" data-sk-source-container="chart" data-sk-source-id="1972986557659025411" data-sk-source-type="web_search" id="chart1" _echarts_instance_="ec_1759232664024" sk-source-uniq-id="sk-source-tag-35" style="-webkit-user-select: none; position: relative;"></div>
+<div class="data-source">Data Source: </div>
+<ul>
+<li><strong>Existing Platforms and Pain Points:</strong> I analyzed popular resale apps and websites (e.g. Poshmark, Depop, Vinted, The RealReal) to identify common UX strengths and weaknesses. Many platforms allow peer-to-peer selling with minimal verification, leading to issues of trust and inconsistency. <strong>User reviews and UX case studies</strong> highlighted recurring complaints: static photos and vague descriptions fail to show true condition, leading to disappointment upon delivery . Interfaces can be cluttered or unintuitive, especially for new sellers or casual buyers . There is a clear need for <strong>better visual representation of products and a simplified, trustworthy interface</strong> .</li>
+<li><strong>Technology Trends:</strong> I explored emerging technologies that could address the identified problems. <strong>AI-based image analysis</strong> was a promising solution for objective condition checks – for instance, computer vision systems can detect flaws like stains or tears in clothing images  . In the luxury resale sector, companies like The RealReal have already implemented AI to <strong>speed up authentication and item processing</strong> , demonstrating that AI can handle complex visual assessments at scale. On the fit front, <strong>virtual try-on and 3D body scanning</strong> technologies are advancing rapidly. Retailers see virtual try-ons as a way to bridge the gap between online and in-store shopping, boosting confidence and reducing returns  . While fully realistic AR clothing try-on is still an evolving technology (with challenges in rendering and body mapping  ), progress in 3D garment modeling and avatar fitting suggested that a convincing prototype was feasible for the scope of this project.</li>
+<li><strong>User Insights:</strong> To ground the design in user needs, I reviewed qualitative insights from similar projects and conducted informal interviews with second-hand shoppers. A common theme was the desire for <strong>more transparency and detail</strong> in listings. Shoppers want to know about any flaws <em>before</em> buying, and they want multiple views (photos or even video) of items . Fit-related anxiety was another major theme – users expressed frustration with ordering items that end up not fitting, wasting time and money. They welcomed the idea of a virtual try-on if it could realistically show fit. Lastly, many users felt that sustainable shopping should be celebrated; they liked the notion of seeing the environmental impact of their purchases, as it adds meaning to their buying decisions.</li>
+</ul>
+<p>Armed with this research, I moved into the ideation phase with a clear understanding of what features would resonate most with users and how technology could be leveraged to solve their problems.</p>
+<h2 id="section-ideation-and-concept-development">Ideation and Concept Development</h2>
+<p>With the problem space defined, I began ideating solutions that would fulfill the project goals. The ideation process was highly iterative, combining <strong>brainstorming, sketching, and prototyping</strong> to explore various concepts:</p>
+<ul>
+<li><strong>Brainstorming Solutions:</strong> We started with a brainstorming session focusing on how to verify product condition and fit in innovative ways. Ideas ranged from crowdsourced verification (having multiple users or experts inspect photos) to advanced tech solutions like AI scanning and AR try-ons. Given the project’s tech-forward nature, we gravitated toward AI and 3D visualization as core components, as they could potentially scale and provide immediate results to users.</li>
+<li><strong>Storyboarding User Journeys:</strong> To visualize how these solutions would fit into the user experience, I created storyboards for key scenarios: a seller listing an item with the new verification feature, and a buyer discovering an item, checking its condition report, and using the virtual try-on before purchasing. This helped identify the necessary steps and touchpoints in the flow. For example, the seller journey included taking photos, uploading them, waiting for AI analysis, and then seeing the generated condition report. The buyer journey included browsing, tapping into an item, reviewing the report and try-on, and then purchasing with confidence.</li>
+<li><strong>Sketching and Wireframing:</strong> I translated the storyboards into low-fidelity wireframes (sketches and Figma wireframes) for critical screens. This included the item listing page with a condition report section, the virtual try-on interface, and the profile page showing sustainability impact. Early wireframes were kept simple to focus on layout and content hierarchy. For instance, on the item page, I experimented with layouts that would prominently display the AI-generated condition score and highlight any noted flaws, while still showcasing the product images. On the try-on screen, I sketched how a user might see their avatar or a model wearing the item, with controls to rotate or zoom.</li>
+<li><strong>Concept Validation:</strong> Throughout ideation, I kept the target users in mind. Would an average user trust an AI-generated condition report? Would they be comfortable inputting body measurements for a virtual avatar? To address these questions, I did quick concept validation by sharing sketches with a few potential users. The feedback was encouraging – users liked the idea of an objective condition score (it made them feel the platform was looking out for them), and they were intrigued by the virtual try-on, though some were skeptical about accuracy. This feedback reinforced that <strong>clarity and simplicity</strong> would be key in presenting these features (so users understand how the AI derived its conclusions and how the try-on works).</li>
+<li><strong>Feature Prioritization:</strong> We also refined the feature set, focusing on the core trio that directly addresses the main problems: (1) AI-based condition verification, (2) 3D virtual try-on, and (3) sustainability impact tracking. While additional features like social sharing or advanced search filters were considered, we prioritized these three to keep the scope manageable and the user experience focused. Each feature was mapped to a user need: trust, fit confidence, and emotional reward for sustainable behavior.</li>
+</ul>
+<p>By the end of the ideation phase, we had a clear concept for VeriWear: a <strong>mobile app that combines an AI “authenticity scan” for item condition, a virtual fitting room for size and style, and a personal sustainability dashboard</strong>. With the concept validated and user flows outlined, I proceeded to design the user interface and interactive prototypes.</p>
+<h2 id="section-design-solutions-and-features">Design Solutions and Features</h2>
+<p>To tackle the identified problems, I designed a suite of innovative features that integrate into VeriWear’s user experience. Each feature is described below, along with its design, interaction, and the user problem it solves.</p>
+<h3 id="section-1-ai-authenti-scan-objective-condition-reports">1. AI Authenti-Scan: Objective Condition Reports</h3>
+<p><strong>Problem:</strong> Buyers cannot reliably trust subjective condition descriptions from sellers. Phrases like “good condition” mean different things to different people, and hidden flaws often only become apparent after delivery.</p>
+<p><strong>Solution:</strong> <em>AI Authenti-Scan</em> – an automated condition verification feature. When a seller lists an item, they are prompted to upload a set of <strong>high-resolution photos</strong> (or a short video) showing all angles and details of the garment. An AI model (leveraging computer vision and image recognition) analyzes the images to detect any imperfections or signs of wear. The AI looks for common issues such as <strong>stains, fabric pilling, fading, holes, or tears</strong>, as well as verifying key details like brand logos or fabric composition. It then generates a <strong>simple, objective condition report</strong> for the item. This report includes a <strong>Condition Score</strong> (e.g. 9.5/10) summarizing the overall condition, and a list of any detected flaws with brief descriptions. For clarity, the report also provides a <strong>visual diagram</strong> of the clothing item, pinpointing where any flaws were found (for example, a small icon on the diagram indicating “pilling on left sleeve”).</p>
+<p><strong>Design &amp; Interaction:</strong> The seller initiates the Authenti-Scan by tapping a “Verify Condition” button after uploading photos. They see an animated progress indicator (“Scanning item…”) which takes only a few seconds. Once complete, a review screen shows the AI’s findings. The seller can review the Condition Score and any flagged issues. If everything looks accurate, they confirm and the report is attached to their listing. (The design allows the seller to dispute or add notes if they believe the AI missed something, ensuring a human-in-the-loop quality check.)</p>
+<p>For buyers, the condition report is front-and-center on the item page. The <strong>Condition Score</strong> is displayed prominently (e.g. in a badge or large text) so users can quickly gauge quality. Tapping “See Full Report” expands it to show details and the annotated diagram. The UI uses a clean layout with icons and minimal text to convey information at a glance – for instance, a red icon with an “X” might mark a stain location, while a green checkmark indicates no major issues in an area. The tone is factual and reassuring, using phrases like “No tears or rips detected” and量化 measurements (e.g., “Small 2cm stain on front”).</p>
+<figure style="text-align: center;">
+<img alt="User interface for VeriWear&#39;s AI Authenti-Scan condition report" src="https://agents-download.skywork.ai/image/rt/8ac130d2d112b9fdf68019dae8408a0f.jpg" style="max-height: 280px; max-width: 50vw; max-height: 280px; max-width: 100%;"/>
+<figcaption>A mobile app interface showing a product&#39;s sustainability badge score</figcaption>
+</figure>
+<p><strong>Impact:</strong> This feature replaces ambiguity with <strong>certainty</strong>. By providing a <strong>data-driven condition assessment</strong>, VeriWear dramatically increases buyer trust. Shoppers can make more informed decisions, knowing exactly what condition the item is in. This should <strong>minimize returns and disputes</strong>, as there will be fewer surprises post-delivery. Sellers also benefit – an item with a high Condition Score can be marketed as such, potentially fetching a better price or selling faster. Overall, AI Authenti-Scan establishes VeriWear as a trustworthy platform where <strong>transparency is built-in</strong> to every transaction.</p>
+<p><em>(Note: The AI Authenti-Scan concept is inspired by real-world AI verification tools. For example, AI can automatically detect holograms, watermarks, and text on documents   – similarly, in VeriWear it scans clothing for flaws. While current AI might not catch <em>every</em> nuance of garment condition, the concept demonstrates how technology can augment trust in second-hand transactions.)</em></p>
+<h3 id="section-2-virtual-try-on-room-3d-fit-visualization">2. Virtual Try-On Room: 3D Fit Visualization</h3>
+<p><strong>Problem:</strong> Shopping for unique, pre-owned items online means you can never be sure how the piece will fit or look on your body. Standard size charts and model photos are not enough to overcome fit anxiety, especially given varying body shapes and differences between brands.</p>
+<p><strong>Solution:</strong> <em>Virtual Try-On Room</em> – an immersive feature that allows users to see how a garment fits on a personalized avatar or even via augmented reality. Using the seller’s photos, the app generates a <strong>3D model of the clothing item</strong>. Users can input their body measurements (or create a profile with height, weight, and body type) to create a custom avatar. When viewing an item, they can tap “Virtual Try-On” to see the 3D garment model superimposed on their avatar. The view is interactive: users can rotate the avatar 360° to inspect the fit from all angles, zoom in on details, and even switch between different avatar poses or a live camera AR view (if available).</p>
+<p><strong>Design &amp; Interaction:</strong> On the item detail screen, a prominent button “Try It On” launches the Virtual Try-On. Upon entering, the user sees their avatar wearing the item. The interface includes simple controls: a rotate gesture or button to spin the avatar, a pinch-to-zoom, and perhaps sliders to adjust avatar posture (e.g., turn slightly left/right). For users who opt in, there is an AR mode: using the phone’s camera, they can point it at themselves in a mirror and see a live overlay of the clothing on their body (this is a conceptual AR feature, akin to how some apps overlay furniture in your room – for clothing it’s more complex, but for the prototype we simulated a live AR try-on using the device camera feed with the 3D model).</p>
+<p>The avatar creation process was designed to be quick and optional. New users are prompted to enter basic measurements or select a body type (slim, athletic, curvy, etc.) and height. This information generates a proportional avatar. Users can also take a 3D body scan using a companion app or web tool (a nod to 3D body scanning tech that can capture precise measurements from photos ), though for simplicity, manual input was the primary method in our prototype.</p>
+<p>The <strong>visual design</strong> of the try-on screen is kept clean, with the avatar or camera view taking up most of the screen. A small info panel might show the item’s size and the avatar’s size for reference, and a note like “Avatar is size M, 5’6” for context. We included subtle cues to help the user interpret fit: for example, if the garment appears tight on the avatar, a small warning icon or text could indicate “Fits snug” based on the measurements, whereas if it’s loose, it might say “Relaxed fit.” This kind of feedback helps translate the visual into actionable info for the user.</p>
+<figure style="text-align: center;">
+<img alt="VeriWear&#39;s virtual try-on interface showing a 3D avatar" src="https://agents-download.skywork.ai/image/rt/85ec4cb20beace1c00b067b64f9abe04.jpg" style="max-height: 280px; max-width: 50vw; max-height: 280px; max-width: 100%;"/>
+<figcaption>A user interface for a virtual try-on room, featuring a 3D garment model and an avatar</figcaption>
+</figure>
+<p><strong>Impact:</strong> The Virtual Try-On Room is aimed at <strong>virtually eliminating fit-related uncertainty</strong>. By allowing users to visualize the item on a representation of themselves, we give them the confidence to purchase without physically trying it on. This should <strong>drastically reduce the likelihood of returns</strong> due to fit, which is a win for both the user (no hassle or cost of returning) and the environment (less shipping and waste) . Moreover, it adds an element of fun and engagement – users can “play” with different looks, mixing and matching items on their avatar, turning shopping into an interactive experience rather than a passive browse. This feature aligns with broader industry trends: retailers have found that offering try-before-you-buy options (via AR or avatar) can <strong>boost online sales and customer satisfaction while cutting return rates</strong> . VeriWear’s Virtual Try-On Room brings that advantage to the second-hand market, making it a standout feature in the app.</p>
+<h3 id="section-3-sustainable-impact-score-gamifying-sustainability">3. Sustainable Impact Score: Gamifying Sustainability</h3>
+<p><strong>Problem:</strong> While many consumers appreciate that buying second-hand is good for the planet, the <strong>positive environmental impact</strong> can feel abstract. There is no immediate feedback or reward that connects a purchase to its eco-benefits, which might reduce the motivation for some users to consistently choose pre-owned.</p>
+<p><strong>Solution:</strong> <em>Sustainable Impact Score</em> – a personal dashboard that tracks and celebrates each user’s contribution to sustainability through their second-hand purchases. Every time a user buys an item on VeriWear, the app calculates the estimated environmental savings compared to buying that item new. This includes metrics like <strong>water saved, carbon emissions avoided, and waste diverted</strong> from landfills. These figures are aggregated into a personal score and displayed on the user’s profile. The interface shows a progress meter or level for the user’s sustainability “rank,” along with badges or achievements for milestones (e.g., “10 items saved” or “1000 liters of water saved”).</p>
+<p><strong>Design &amp; Interaction:</strong> The Sustainable Impact Score is accessible via the user’s profile tab. It features a visually engaging display – for example, a large circular gauge showing the user’s current score and level, with highlights of key stats (“You’ve saved 5000L of water and 200kg of CO2!”). We used icons (droplet for water, leaf for CO2, etc.) and simple infographics to make the data digestible at a glance. Users can tap into each metric to see a breakdown by item or over time, but the default view is a quick summary to reinforce the positive impact.</p>
+<p>To make it gamified, we incorporated <strong>level progression</strong>: each time the user’s score crosses a threshold, they level up (e.g., from “Eco Beginner” to “Eco Champion”) and maybe unlock a badge. These badges can be displayed on their profile publicly, so users can showcase their sustainable achievements to friends or the community. We also included a <strong>social sharing feature</strong> – with one tap, a user can share their impact stats or a level-up moment to social media (with a message like “I just saved 1000 liters of water by shopping second-hand on VeriWear! #SustainableStyle”).</p>
+<p>On the transaction side, after each purchase, the app shows a <strong>“Sustainability Impact” screen</strong> as a thank-you. It highlights the immediate savings from that purchase (e.g., “By buying this vintage dress, you saved ~500 liters of water and 25 kg of CO2!”) and updates the user’s total score. This provides instant gratification and positive reinforcement for choosing second-hand.</p>
+<p><strong>Impact:</strong> The Sustainable Impact Score transforms what could be a simple transaction into a <strong>meaningful action</strong>. By quantifying and celebrating the environmental benefits, VeriWear taps into users’ intrinsic motivation to do good. It <strong>educates users</strong> about the impact of their choices – many might not realize how much water or carbon goes into producing new clothing, and seeing it in black and white can be eye-opening. This feature also leverages <strong>gamification</strong> to increase engagement: users may be motivated to reach the next level or earn a badge, encouraging them to make more sustainable purchases in the future . Early studies have shown that adding game-like elements (badges, points) to sustainability apps can have a positive impact on user engagement . In VeriWear’s case, it creates a sense of community and friendly competition – users can compare scores (if they choose to) and collectively feel proud about contributing to a circular fashion economy. Ultimately, the Sustainable Impact Score aims to <strong>turn sustainable shopping into a rewarding habit</strong>, aligning the platform’s values with the user’s personal values.</p>
+<h2 id="section-user-interface-ux-ui-design-decisions">User Interface (UX/UI) Design Decisions</h2>
+<p>Throughout the design of VeriWear, the <strong>user interface</strong> was crafted to reflect the platform’s values of trust, quality, and sustainability. Key UX/UI decisions included:</p>
+<ul>
+<li><strong>Minimalist &amp; Premium Aesthetic:</strong> The UI uses a <strong>clean, minimalist design</strong> with plenty of white space and high-quality imagery. This gives the app a premium feel, distancing it from cluttered marketplaces. A neutral color palette (shades of white, gray, with accents of a calming green) was chosen. Green was used sparingly as an accent to symbolize sustainability and trust (think “go” or “approved” signals), but not so much that it looks like an eco-themed novelty. The idea was to appear <strong>sophisticated and trustworthy</strong>, like a high-end boutique, which helps attract users who might be new to second-hand shopping.</li>
+<li><strong>Visual Hierarchy and Readability:</strong> On every screen, important information is given visual priority. For example, on an item page, the product images and Condition Score are at the top, immediately visible. We used clear typography (a sans-serif font for a modern look) and consistent spacing so that users can scan information quickly. Any alerts or important messages (like a detected flaw in an item) are presented in a clear, non-alarmist way – often with an icon and a concise label (e.g., a small warning icon next to “Minor pilling on sleeve”).</li>
+<li><strong>Consistent and Intuitive Navigation:</strong> The app follows common mobile navigation patterns to ensure ease of use. A bottom navigation bar provides quick access to Home (browse), Search, Sell, Favorites, and Profile. The <strong>Sell flow</strong> was simplified as much as possible: a prominent “+ Sell” button allows users to start listing an item in a few taps. We incorporated progress indicators in multi-step processes (like listing an item or setting up your avatar) so users know how much more there is to do. All interactive elements (buttons, toggles) have clear visual feedback (e.g., a slight press effect) to enhance the feel of responsiveness.</li>
+<li><strong>Building Trust through Design:</strong> Trust cues are embedded throughout the UI. Verified items carry a small badge (“AI Verified Condition”) to assure buyers. Seller profiles display their ratings and maybe a “Top Seller” badge if earned, similar to other marketplaces. We also included a <strong>chat system</strong> for buyers and sellers, with a friendly interface, to encourage communication in a safe environment. The checkout and payment screens were designed to feel secure (using familiar payment icons and security badges) so users feel confident entering their details. Overall, the tone of the copy is friendly and reassuring – for instance, onboarding messages welcome the user to a community of sustainable shoppers, and error messages are phrased helpfully rather than critically.</li>
+<li><strong>Accessibility:</strong> We considered accessibility in color choices (ensuring contrast for readability) and provided alt text for images in the prototype. The app supports both light and dark mode for user preference. All interactive elements are sized appropriately for touch, and we included voiceover support in the design specs (though not visible in the prototype) to ensure inclusivity.</li>
+<li><strong>Onboarding and Education:</strong> Since VeriWear introduces new concepts (AI scanning, virtual try-on), the onboarding flow was designed to educate users gently. New users see a brief tutorial carousel explaining the key features: one slide might show the Condition Score concept, another shows the avatar try-on, and another highlights the sustainability impact. This primes users on how to use these features and why they matter. Tooltips or short guides are also available the first time a user encounters a new feature (e.g., the first time they go to try on an item, a small hint appears explaining how to rotate the view).</li>
+</ul>
+<p>By adhering to these design principles, VeriWear’s interface not only looks modern and appealing but also <strong>guides users intuitively</strong> through what could have been complex interactions (like using AI and 3D features). The UI supports the core mission: to make second-hand shopping feel as seamless and trustworthy as possible.</p>
+<h2 id="section-prototyping-and-testing">Prototyping and Testing</h2>
+<p>To bring the VeriWear concept to life and validate the design, I created interactive prototypes and conducted usability testing:</p>
+<ul>
+<li><strong>High-Fidelity Prototyping:</strong> Using Figma, I designed high-fidelity screens for the main user flows: browsing items, viewing an item with the condition report, using the virtual try-on, and checking out. These screens were then connected into a clickable prototype. For more complex interactions (like the 3D rotation in try-on or the animation of an AI scan progress), I used <strong>Framer</strong> to create micro-interactions and dynamic effects. For example, in Framer I prototyped a spinning avatar and a mock AR view that responded to device tilt (simulated via mouse movement in the prototype). This helped demonstrate the vision more concretely than static images.</li>
+<li><strong>User Testing Sessions:</strong> I conducted several usability test sessions with a mix of target users (including both frequent second-hand shoppers and those who rarely buy used). In each session, participants were given a few tasks to perform on the prototype, such as: “Find a winter jacket in good condition, try it on virtually, and then purchase it.” I observed their actions and asked for feedback after each task. The goal was to see if the new features were understandable and if the flows made sense.</li>
+<li><strong>Feedback Highlights:</strong> Overall, users were <strong>excited about the concept</strong> and found the features intuitive. Many commented that the Condition Score and report gave them a sense of security – “It’s like having a professional inspector check the item for me,” one user noted. The virtual try-on was a hit visually; users enjoyed rotating the avatar and seeing different angles. Some did point out that the avatar didn’t perfectly match their body, which is a known limitation – this feedback reinforced that investing in accurate body scanning or more avatar customization could further improve the feature. Regarding the Sustainable Impact Score, users liked seeing their eco-contributions, though a couple suggested it would be nice to compare with friends or see a community impact (an idea for potential future social features).</li>
+<li><strong>Iterations Based on Testing:</strong> A few design tweaks were made based on feedback. For instance, in the initial prototype the Condition Score was a simple number; users suggested adding a label (like “Excellent”, “Good”, “Fair”) next to the numeric score for quick interpretation. We incorporated that, adding a qualitative label (with color-coding) to accompany the 1-10 score. Another adjustment was in the try-on flow: some users were confused about how to exit the AR view, so we made the back button more prominent and added a brief tutorial the first time AR is used. Also, on the item page, we slightly reorganized the layout so that the virtual try-on button was more visible (users tended to look for it after viewing images, so we moved it closer to the images).</li>
+<li><strong>Technical Feasibility Check:</strong> In parallel with user testing, I did a feasibility check for the core technologies. While this was a design project, I wanted to ensure that the proposed features could realistically be implemented. I found that <strong>AI-based image analysis for defects</strong> is already being used in related fields (for example, AI verifying the condition of used electronics or detecting flaws in fabric) , so it’s plausible to adapt such technology to clothing. For the <strong>3D virtual try-on</strong>, current ARKit/ARCore frameworks and services like VerveAR  are making AR try-on more accessible, though clothing is challenging due to fabric physics. A simplified version (like dressing a 3D avatar model) is very feasible with existing 3D modeling tools. Thus, the prototype’s interactions were kept within what is achievable with today’s technology, with some creative leeway for demonstration.</li>
+</ul>
+<p>Testing confirmed that VeriWear’s design effectively addresses the intended problems. Users felt more confident about buying second-hand after experiencing the prototype, and they appreciated the thoughtfulness put into transparency and fit. This positive feedback gave validation that the chosen solutions – AI condition scanning, virtual try-on, and sustainability tracking – are not only innovative but also <strong>user-friendly and desired</strong>.</p>
+<h2 id="section-outcomes-and-reflections">Outcomes and Reflections</h2>
+<p>The VeriWear project resulted in a comprehensive design solution that, if implemented, could significantly enhance the second-hand fashion shopping experience. Here are the key outcomes and learnings from the project:</p>
+<ul>
+<li><strong>Integrated Trust and Technology:</strong> VeriWear successfully integrates advanced tech (AI and 3D visualization) into a fashion e-commerce UX in a way that <strong>feels natural and adds real value</strong>. The core features directly tackle the trust and fit issues that plague online second-hand shopping. By providing objective condition reports and immersive try-on, the platform gives users confidence – an outcome that was clearly reflected in user feedback. This integration of technology to solve user problems is a model for how other e-commerce experiences can be improved by emerging tech.</li>
+<li><strong>User-Centric Innovation:</strong> Throughout the design process, keeping the user at the center was crucial. The team continually asked: will this make the user’s life easier or more enjoyable? Features like the visual diagram in the condition report and the simple one-tap social share for sustainability impact were direct responses to user needs for clarity and engagement. The result is a solution that users not only understand but are <strong>excited</strong> about. For example, users in testing often spontaneously mentioned how they would recommend VeriWear to friends because of these unique features. This indicates a strong potential for user adoption and word-of-mouth growth.</li>
+<li><strong>Designing for Perceived Quality:</strong> One important lesson was that <strong>designing a second-hand platform to feel premium</strong> is achievable and necessary to attract a broader audience. Through careful UI choices – minimalistic design, high-quality images, and thoughtful microcopy – VeriWear avoids the stigma that second-hand shopping is “low quality” or “junk”. Instead, it positions pre-owned fashion as a smart, stylish, and even luxurious choice. This reframing could help shift consumer perceptions and encourage more people to give second-hand a try.</li>
+<li><strong>Balancing Complexity and Simplicity:</strong> Implementing AI and 3D features introduced a lot of complexity under the hood, but the design goal was to make it <strong>invisible to the user</strong>. The biggest design challenge was taking something complex (like an AI algorithm’s analysis or a 3D rendering process) and presenting it in a simple, beautiful way. For instance, the AI Authenti-Scan process is quite complex (image processing, flaw detection, scoring), but to the user it’s just a quick scan animation and a clear report. Achieving that simplicity required extensive iteration in both UX flow and UI design to distill the information. The outcome reinforces the importance of <strong>simplifying complexity</strong> – users should reap the benefits of advanced tech without having to understand it.</li>
+<li><strong>Measuring Success:</strong> If VeriWear were to be launched, success metrics would include user trust indicators (like lower return rates, higher purchase conversion on verified items), engagement metrics (time spent using the virtual try-on, frequency of app use), and of course the growth in sustainable actions (total items sold second-hand through the platform, cumulative environmental impact). The design provides tools to track these (e.g., the impact score inherently tracks environmental metrics). We anticipate that by removing friction (trust and fit issues), VeriWear could see higher conversion rates and lower return rates compared to traditional second-hand platforms, which would be a strong validation of the design.</li>
+<li><strong>Future Enhancements:</strong> The project also highlighted areas for future development. One is improving the accuracy of the AI and the realism of the virtual try-on through machine learning and better 3D modeling (perhaps leveraging user feedback to refine the condition detection, and using more data to improve avatar fit). Another area is expanding the <strong>community aspect</strong> – for example, allowing users to share outfits they created with second-hand items, or implementing a social feed to foster a sense of community around sustainable fashion. Additionally, exploring partnerships with brands or cleaners could add value (e.g., verified cleaning or refurbishing services for items, further boosting quality).</li>
+</ul>
+<p>In conclusion, VeriWear demonstrates how a <strong>user-centered design approach combined with innovative technology</strong> can reimagine an industry. By focusing on solving real user problems – trust and fit – the platform not only improves the shopping experience but also promotes a more sustainable lifestyle. This case study was a fascinating exploration of merging human-centered design with cutting-edge tech, and it underscores the potential of design to drive positive change in e-commerce and beyond.</p>
+<h2 id="section-conclusion">Conclusion</h2>
+<p>VeriWear’s design journey shows that it’s possible to create a <strong>truly trustworthy and delightful second-hand fashion shopping experience</strong> by leveraging technology in smart, user-focused ways. Through the AI Authenti-Scan, Virtual Try-On Room, and Sustainable Impact Score, VeriWear addresses the core pain points of online resale shopping and transforms them into unique selling points. The platform not only helps users find great second-hand items, but also empowers them with confidence, knowledge, and a sense of accomplishment for choosing sustainability.</p>
+<p>As a designer, working on VeriWear was incredibly rewarding. It required balancing creativity with practicality – envisioning futuristic features while ensuring they served real user needs. The project reinforced the importance of <strong>research, iteration, and user feedback</strong> in creating successful solutions. It also highlighted the impact that thoughtful UX/UI design can have in encouraging sustainable behaviors, by making them more engaging and gratifying.</p>
+<p>Moving forward, implementing VeriWear would involve collaboration with engineers to bring the AI and 3D systems to life, as well as ongoing refinement based on user data. If executed, VeriWear could set a new standard for second-hand e-commerce, proving that <strong>sustainable shopping can be just as easy, exciting, and trustworthy as buying new</strong>. In a world increasingly conscious of environmental impact, VeriWear paves the way for a future where shopping second-hand is not a compromise, but the obvious choice for savvy and eco-conscious consumers.</p>
+<div class="reference-container">
+<div class="reference-section">
+<h3 class="reference-title">Reference</h3>
+<div class="reference-list">
+<div class="reference-item">
+<span class="reference-number">[1]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">Top 7 Virtual Dressing Room Apps - Wondershare Virbo</span>
+</div>
+<a class="reference-link" href="https://virbo.wondershare.com/try-on/virtual-fitting-room-apps.html" target="_blank">
+								https://virbo.wondershare.com/try-on/virtual-fitting-room-apps.html
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[2]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">Re-commerce: The Growth of Second-Hand and Refurbished Online ...</span>
+</div>
+<a class="reference-link" href="https://acowebs.com/recommerce-growth-second-hand-refurbished-online-shopping/" target="_blank">
+								https://acowebs.com/recommerce-growth-second-hand-refurbished-online-shopping/
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[3]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">The Rise of Peer-to-Peer Platforms in Resale - HAMMOQ website</span>
+</div>
+<a class="reference-link" href="https://www.hammoq.com/post/how-peer-to-peer-platforms-are-driving-the-resale-revolution" target="_blank">
+								https://www.hammoq.com/post/how-peer-to-peer-platforms-are-driving-the-resale-revolution
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[4]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">Thrifted Trends – UX/UI Design of a Second-Hand Fashion App for ...</span>
+</div>
+<a class="reference-link" href="https://jkirbyportfolio.com/thrifted-trends" target="_blank">
+								https://jkirbyportfolio.com/thrifted-trends
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[5]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">The Rise of Sustainable Fashion: How Technology is Transforming ...</span>
+</div>
+<a class="reference-link" href="https://medium.com/@preeti.rana.ai/the-rise-of-sustainable-fashion-how-technology-is-transforming-the-industry-d4bf7b37a639" target="_blank">
+								https://medium.com/@preeti.rana.ai/the-rise-of-sustainable-fashion-how-technology-is-transforming-the-industry-d4bf7b37a639
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[6]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">UED Tips for Online Marketplaces and Peer-to-Peer Platforms</span>
+</div>
+<a class="reference-link" href="https://www.linkedin.com/advice/0/how-can-you-effectively-design-online-marketplaces-7uyyc" target="_blank">
+								https://www.linkedin.com/advice/0/how-can-you-effectively-design-online-marketplaces-7uyyc
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[7]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">Enhancing Shopping Experiences with Virtual Try-Ons and 3D Body ...</span>
+</div>
+<a class="reference-link" href="https://thebossmagazine.com/post/shopping-virtual-try-ons-3d-body-scanning/" target="_blank">
+								https://thebossmagazine.com/post/shopping-virtual-try-ons-3d-body-scanning/
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[8]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">Virtual Try-on for Clothing: The Future of Fashion? - 3DLOOK</span>
+</div>
+<a class="reference-link" href="https://3dlook.ai/content-hub/virtual-clothing-try-on/" target="_blank">
+								https://3dlook.ai/content-hub/virtual-clothing-try-on/
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[9]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">How perceived sustainability influences consumers&#39; clothing ...</span>
+</div>
+<a class="reference-link" href="https://www.nature.com/articles/s41598-024-80279-4" target="_blank">
+								https://www.nature.com/articles/s41598-024-80279-4
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[10]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">Virtual Fitting Rooms: Solving Data Labeling Challenges for Fashion</span>
+</div>
+<a class="reference-link" href="https://www.sama.com/blog/virtual-try-on-data-labeling-challenges" target="_blank">
+								https://www.sama.com/blog/virtual-try-on-data-labeling-challenges
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[11]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">Virtual Try-On Beauty Technology Statistics For 2025 - Free Yourself</span>
+</div>
+<a class="reference-link" href="https://freeyourself.com/blogs/news/virtual-try-on-beauty-technology-statistics?srsltid=AfmBOoruYCdsAA1YFX-27JEnIRJl8Vi3GKYh0nHACrGbwpJ7C6_zOH2r" target="_blank">
+								https://freeyourself.com/blogs/news/virtual-try-on-beauty-technology-statistics?srsltid=AfmBOoruYCdsAA1YFX-27JEnIRJl8Vi3GKYh0nHACrGbwpJ7C6_zOH2r
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[12]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">Sustainability scorecards and goals overview - Microsoft Learn</span>
+</div>
+<a class="reference-link" href="https://learn.microsoft.com/en-us/dynamics365/business-central/sustainability-scorecards-goals" target="_blank">
+								https://learn.microsoft.com/en-us/dynamics365/business-central/sustainability-scorecards-goals
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[13]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">VerveAR helps you visualise an eCommerce product before you buy it</span>
+</div>
+<a class="reference-link" href="https://techpoint.africa/feature/how-vervear-works/" target="_blank">
+								https://techpoint.africa/feature/how-vervear-works/
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[14]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">How the RealReal Is Using AI to Find Fakes - Business Insider</span>
+</div>
+<a class="reference-link" href="https://www.businessinsider.com/how-the-realreal-is-using-ai-to-find-fakes-2024-5" target="_blank">
+								https://www.businessinsider.com/how-the-realreal-is-using-ai-to-find-fakes-2024-5
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[15]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">AI Document Verification Explained: A Complete Guide - Technource</span>
+</div>
+<a class="reference-link" href="https://www.technource.com/blog/ai-document-verification/" target="_blank">
+								https://www.technource.com/blog/ai-document-verification/
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[16]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">Enhancing Shopping Experiences with Virtual Try-Ons and 3D Body ...</span>
+</div>
+<a class="reference-link" href="https://thebossmagazine.com/post/shopping-virtual-try-ons-3d-body-scanning/" target="_blank">
+								https://thebossmagazine.com/post/shopping-virtual-try-ons-3d-body-scanning/
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[17]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">What Are the Key Metrics for Measuring Sustainable Fashion Impact?</span>
+</div>
+<a class="reference-link" href="https://sustainability-directory.com/question/what-are-the-key-metrics-for-measuring-sustainable-fashion-impact/" target="_blank">
+								https://sustainability-directory.com/question/what-are-the-key-metrics-for-measuring-sustainable-fashion-impact/
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[18]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">Gamifying Sustainability: Turning Eco-Choices into Playful Wins</span>
+</div>
+<a class="reference-link" href="https://digitalagencynetwork.com/gamifying-sustainability-turning-eco-choices-into-playful-wins/" target="_blank">
+								https://digitalagencynetwork.com/gamifying-sustainability-turning-eco-choices-into-playful-wins/
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[19]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">[PDF] The Impact of Gamification on User Engagement in a Second- hand ...</span>
+</div>
+<a class="reference-link" href="https://www.diva-portal.org/smash/get/diva2:1772726/FULLTEXT01.pdf" target="_blank">
+								https://www.diva-portal.org/smash/get/diva2:1772726/FULLTEXT01.pdf
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[20]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">UX design case study — Improving a KYC flow of a FinTech app</span>
+</div>
+<a class="reference-link" href="https://medium.com/design-bootcamp/redesign-of-risevest-kyc-flow-ux-design-case-study-1d3f557578d" target="_blank">
+								https://medium.com/design-bootcamp/redesign-of-risevest-kyc-flow-ux-design-case-study-1d3f557578d
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[21]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">Virtual Try-On | AR Try-On for Shoes, Bags, Clothes, and Watches</span>
+</div>
+<a class="reference-link" href="https://wanna.fashion/" target="_blank">
+								https://wanna.fashion/
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[22]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">Virtual Try-on Business Analysis Report 2024-2030: Rising ...</span>
+</div>
+<a class="reference-link" href="https://www.businesswire.com/news/home/20250327363387/en/Virtual-Try-on-Business-Analysis-Report-2024-2030-Rising-Popularity-of-Social-Commerce-Fuels-Innovation-in-Virtual-Try-On-Features---ResearchAndMarkets.com" target="_blank">
+								https://www.businesswire.com/news/home/20250327363387/en/Virtual-Try-on-Business-Analysis-Report-2024-2030-Rising-Popularity-of-Social-Commerce-Fuels-Innovation-in-Virtual-Try-On-Features---ResearchAndMarkets.com
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[23]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">Powerful Passport Recognition: Step by Step Guide in 2024</span>
+</div>
+<a class="reference-link" href="https://miniai.live/passport-recognition-step-by-step-guide/" target="_blank">
+								https://miniai.live/passport-recognition-step-by-step-guide/
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[24]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">Key Challenges of Implementing Virtual Try-on Apps - Netguru</span>
+</div>
+<a class="reference-link" href="https://www.netguru.com/blog/key-challenges-of-implementing-virtual-try-on-apps" target="_blank">
+								https://www.netguru.com/blog/key-challenges-of-implementing-virtual-try-on-apps
+							</a>
+</div>
+</div>
+<div class="reference-item">
+<span class="reference-number">[25]</span>
+<div class="reference-content">
+<div class="reference-text-container">
+<span class="reference-text">VerveAR Launches 3D, AR, &amp; Virtual Try-On Shopify Integration</span>
+</div>
+<a class="reference-link" href="https://www.auganix.org/ar-news-vervear-launches-3d-ar-and-virtual-try-on-integration-for-shopify-merchants/" target="_blank">
+								https://www.auganix.org/ar-news-vervear-launches-3d-ar-and-virtual-try-on-integration-for-shopify-merchants/
+							</a>
+</div>
+</div>
+</div>
+</div>
+</div></div><script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Chart 1: Global Resale Clothing Market Growth
+            var chart1 = echarts.init(document.getElementById('chart1'));
+            var option1 = {
+                title: {
+                    text: 'Global Resale Clothing Market Growth (2024 vs. 2029)',
+                    subtext: 'Projected growth in market value',
+                    left: 'center'
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    data: ['2024', '2029 (Projected)'],
+                    axisLabel: { fontSize: 14 }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: 'Market Value (Billion USD)',
+                    axisLabel: {
+                        formatter: '${value}B',
+                        fontSize: 12
+                    }
+                },
+                series: [{
+                    name: 'Market Value',
+                    type: 'bar',
+                    barWidth: '60%',
+                    data: [
+                        { value: 25, itemStyle: { color: '#5470c6' } },
+                        { value: 45, itemStyle: { color: '#91cc75' } }
+                    ],
+                    label: {
+                        show: true,
+                        position: 'top',
+                        formatter: '${c}B',
+                        fontSize: 16,
+                        fontWeight: 'bold'
+                    }
+                }],
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    },
+                    formatter: '{b}: ${c} Billion'
+                }
+            };
+            chart1.setOption(option1);
+
+            // Resize charts on window resize
+            window.addEventListener('resize', function () {
+                chart1.resize();
+            });
+        });
+    </script></body></html>
