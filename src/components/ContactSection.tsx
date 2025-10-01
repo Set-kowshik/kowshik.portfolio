@@ -5,6 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Send, Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import emailjs from '@emailjs/browser';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,12 +72,64 @@ const ContactSection: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add form submission logic here
-    console.log('Form submitted:', formData);
-    
-    // Animation for submit button
+    setSubmitError(null);
+    setIsSubmitting(true);
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
+    const appsScriptUrl = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL as string | undefined;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setSubmitError('Email service is not configured.');
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const emailPromise = emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          reply_to: formData.email,
+          message: formData.message,
+          to_email: 'g.kowshik00@gmail.com',
+        },
+        { publicKey }
+      );
+
+      const sheetsPromise = appsScriptUrl
+        ? fetch(appsScriptUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            // If your Apps Script doesn't include CORS headers, you can switch to: mode: 'no-cors'
+            body: JSON.stringify({
+              name: formData.name,
+              email: formData.email,
+              message: formData.message,
+              timestamp: new Date().toISOString(),
+            }),
+          })
+        : Promise.resolve(new Response());
+
+      await Promise.allSettled([emailPromise, sheetsPromise]);
+
+      setFormData({ name: '', email: '', message: '' });
+      if (formRef.current) {
+        formRef.current.reset();
+      }
+    } catch (err) {
+      setSubmitError('Failed to send message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
+
     gsap.to('.submit-btn', {
       scale: 1.05,
       duration: 0.1,
@@ -206,14 +259,19 @@ const ContactSection: React.FC = () => {
                 />
               </div>
 
+              {submitError && (
+                <p className="text-sm text-destructive" role="alert">{submitError}</p>
+              )}
+
               <Button
                 type="submit"
                 variant="glow"
                 size="lg"
                 className="submit-btn w-full group"
+                disabled={isSubmitting}
               >
                 <Send className="mr-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </Button>
             </form>
           </div>
