@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Github, Linkedin, Mail, Sun, Moon } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
 import { gsap } from 'gsap';
-import { useTheme } from 'next-themes';
 
 const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const navItems = [
     { name: 'Home', href: '#home' },
@@ -44,10 +37,6 @@ const Navigation: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
-
   return (
     <>
       {/* Desktop Navigation */}
@@ -74,7 +63,7 @@ const Navigation: React.FC = () => {
               ))}
             </div>
 
-            {/* Social Links & Theme Toggle */}
+            {/* Social Links */}
             <div className="hidden md:flex items-center space-x-4">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <a
@@ -87,16 +76,6 @@ const Navigation: React.FC = () => {
                   <Icon size={18} />
                 </a>
               ))}
-              {mounted && (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={toggleTheme}
-                  className="nav-item text-muted-foreground hover:text-primary transition-smooth p-2 rounded-lg hover:bg-glass/50"
-                >
-                  {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-                </Button>
-              )}
             </div>
 
             {/* Mobile Menu Button */}
@@ -139,16 +118,6 @@ const Navigation: React.FC = () => {
                   <Icon size={24} />
                 </a>
               ))}
-              {mounted && (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={toggleTheme}
-                  className="text-muted-foreground hover:text-primary transition-smooth p-3 rounded-lg hover:bg-glass/50"
-                >
-                  {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
-                </Button>
-              )}
             </div>
             <Button
               variant="ghost"
