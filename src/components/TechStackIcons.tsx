@@ -1,15 +1,12 @@
 import React from 'react';
-import { Database, Smartphone, Zap, Globe, Flame, Activity, Box, Brain } from 'lucide-react';
+import { Figma, PenTool, Layout, Image, Palette } from 'lucide-react';
 
 const techIcons: Record<string, React.ComponentType<any>> = {
-  'React Native': Smartphone,
-  'Node.js': Globe,
-  'MongoDB': Database,
-  'Firebase': Flame,
-  'HealthKit': Activity,
-  'React': Zap,
-  'Three.js': Box,
-  'TensorFlow': Brain,
+  'Figma': Figma,
+  'Sketch': PenTool,
+  'Adobe XD': Layout,
+  'Adobe Illustrator': Palette,
+  'Adobe Photoshop': Image,
 };
 
 interface TechStackIconsProps {
