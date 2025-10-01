@@ -10,7 +10,8 @@ const CaseStudy = () => {
   const caseStudyMap: Record<string, string> = {
     'localhub': '/case-studies/localhub.html',
     'wellness-companion': '/case-studies/wellness-companion.html',
-    'veriwear': '/case-studies/veriwear.html'
+    'veriwear': '/case-studies/veriwear.html',
+    'freshly': '/case-studies/freshly.html'
   };
   const caseStudyPath = id ? caseStudyMap[id] : null;
   useEffect(() => {

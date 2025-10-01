@@ -10,6 +10,7 @@ import TechStackIcons from './TechStackIcons';
 import project1 from '@/assets/project-1.png';
 import project2 from '@/assets/project-2.png';
 import project3 from '@/assets/project-3.png';
+import project4 from '@/assets/project-4.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,6 +40,15 @@ const projects = [
     image: project3,
     tech: ['Figma', 'Adobe Illustrator', 'Adobe Photoshop'],
     caseStudyId: 'veriwear',
+    githubUrl: '#',
+  },
+  {
+    id: 4,
+    title: 'Freshly',
+    description: 'Smart pantry management app that reduces food waste through intelligent inventory tracking, meal suggestions, and shopping lists.',
+    image: project4,
+    tech: ['Figma', 'Adobe Illustrator', 'Adobe Photoshop'],
+    caseStudyId: 'freshly',
     githubUrl: '#',
   },
 ];

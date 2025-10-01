@@ -1,0 +1,812 @@
+<!DOCTYPE html><html lang="en-US"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Freshly: A UX/UI Case Study – Redefining the Smart Kitchen</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0px auto;
+            padding: 24px 40px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1, h2, h3 {
+            color: #1a1a1a;
+            line-height: 1.3;
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+            scroll-margin-top: 20px;
+        }
+        h1 {
+            font-size: 2.2em;
+            text-align: center;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 1.8em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.3em;
+        }
+        h3 {
+            font-size: 1.4em;
+        }
+        p {
+            margin-bottom: 1.2em;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        strong {
+            color: #111;
+        }
+        ul {
+            padding-left: 20px;
+            margin-bottom: 1.2em;
+        }
+        li {
+            margin-bottom: 0.5em;
+        }
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 15px 25px;
+            margin-bottom: 30px;
+        }
+        .toc h2 {
+            font-size: 1.5em;
+            margin-top: 0;
+            border-bottom: none;
+        }
+        .toc ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+        .toc ul ul {
+            padding-left: 25px;
+        }
+        .toc li {
+            margin-bottom: 8px;
+        }
+        .chart-wrapper {
+            width: 100%;
+            height: 450px;
+            margin: 30px auto;
+            box-sizing: border-box;
+        }
+        .data-source {
+            text-align: center;
+            font-size: 0.85em;
+            color: #666;
+            margin-top: -20px;
+            margin-bottom: 30px;
+        }
+        .data-source a {
+            color: #555;
+        }
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            list-style: none;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            height: 100%;
+            width: 4px;
+            background: #e9ecef;
+        }
+        .timeline-item {
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 50px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #007bff;
+            border: 2px solid #fff;
+            z-index: 1;
+        }
+        .timeline-time {
+            display: block;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 5px;
+        }
+        .timeline-content {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+        .timeline-content h4 {
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+        }
+        .timeline-content p {
+            margin: 0;
+            font-size: 0.95em;
+        }
+    </style>
+<link rel="stylesheet" href="https://static.skywork.ai/fe/skywork-site-assets/styles/doc_reference_style.css?v=1973256808554430464"/></head>
+<body>
+<div class="container">
+<h1 id="section-main-title">Freshly: A UX/UI Case Study – Redefining the Smart Kitchen</h1>
+<div class="toc">
+<h2 id="section-1">Table of Contents</h2>
+<ul>
+<li><a href="#section-project-overview">Project Overview</a></li>
+<li><a href="#section-the-problem">The Problem</a></li>
+<li><a href="#section-phase-1-discover-understanding-user-habits">Phase 1: Discover – Understanding User Habits</a>
+<ul>
+<li><a href="#section-competitive-analysis">Competitive Analysis</a></li>
+<li><a href="#section-user-interviews">User Interviews</a></li>
+</ul>
+</li>
+<li><a href="#section-phase-2-define-focusing-on-the-user">Phase 2: Define – Focusing on the User</a>
+<ul>
+<li><a href="#section-user-persona">User Persona</a></li>
+<li><a href="#section-defining-the-problem">Defining the Problem</a></li>
+</ul>
+</li>
+<li><a href="#section-phase-3-develop-ideation-and-design">Phase 3: Develop – Ideation and Design</a>
+<ul>
+<li><a href="#section-user-flow">User Flow</a></li>
+<li><a href="#section-wireframing">Wireframing</a></li>
+<li><a href="#section-ui-design-and-branding">UI Design and Branding</a></li>
+</ul>
+</li>
+<li><a href="#section-phase-4-deliver-testing-and-iteration">Phase 4: Deliver – Testing and Iteration</a>
+<ul>
+<li><a href="#section-usability-testing">Usability Testing</a></li>
+<li><a href="#section-design-iterations">Design Iterations</a></li>
+</ul>
+</li>
+<li><a href="#section-the-final-solution">The Final Solution</a>
+<ul>
+<li><a href="#section-effortless-onboarding-inventory">Effortless Onboarding &amp; Inventory</a></li>
+<li><a href="#section-the-use-it-up-feed">The “Use-It-Up” Feed</a></li>
+<li><a href="#section-intelligent-shopping-list">Intelligent Shopping List</a></li>
+<li><a href="#section-impact-dashboard">Impact Dashboard</a></li>
+</ul>
+</li>
+<li><a href="#section-project-takeaways-next-steps">Project Takeaways &amp; Next Steps</a>
+<ul>
+<li><a href="#section-what-i-learned">What I Learned</a></li>
+<li><a href="#section-next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="section-project-overview">Project Overview</h2>
+<p>Freshly is a conceptual mobile app designed to combat household food waste through intelligent pantry management and proactive recipe inspiration. By transforming a daily chore into a seamless and delightful experience, Freshly helps users save money, reduce their environmental impact, and answer the timeless question: <em>“What’s for dinner?”</em> This case study details the end-to-end design process, from initial research to a high-fidelity, validated prototype.</p>
+<div class="timeline">
+<div class="timeline-item">
+<span class="timeline-time">Timeline:</span>
+<div class="timeline-content">
+<h4>4 Weeks (Conceptual Project)</h4>
+<p>A focused design sprint to conceptualize and prototype the app.</p>
+</div>
+</div>
+<div class="timeline-item">
+<span class="timeline-time">Role:</span>
+<div class="timeline-content">
+<h4>UX/UI Designer (Sole Designer)</h4>
+<p>Responsible for all stages of design from research to testing.</p>
+</div>
+</div>
+<div class="timeline-item">
+<span class="timeline-time">Responsibilities:</span>
+<div class="timeline-content">
+<h4>User Research, Persona Creation, User Flows, Wireframing, UI Design, Prototyping, Usability Testing</h4>
+<p>End-to-end design execution in a solo capacity.</p>
+</div>
+</div>
+<div class="timeline-item">
+<span class="timeline-time">Tools:</span>
+<div class="timeline-content">
+<h4>Figma, Miro, Google Forms</h4>
+<p>Utilized for design, collaboration, and surveying.</p>
+</div>
+</div>
+</div>
+<h2 id="section-the-problem">The Problem</h2>
+<p>Globally, approximately <strong>one-third of all food produced for human consumption is wasted each year</strong> . At the household level, this translates to both financial loss and environmental strain. The scale of this issue is immense, as illustrated by the data below.</p>
+<div class="chart-wrapper" id="chart1" data-sk-source-id="1973255276987088914" data-sk-source-type="web_search" data-sk-source-container="chart"></div>
+<div class="data-source">Data Source: , , </div>
+<p>My initial research identified that this isn’t due to a lack of care, but a combination of common frustrations:</p>
+<ul>
+<li><strong>Lack of Awareness:</strong> Busy lives make it difficult to track what’s in the pantry and when it expires. Food gets pushed to the back of the fridge and forgotten.</li>
+<li><strong>Friction in Planning:</strong> Manually checking ingredients and searching for suitable recipes is a time-consuming chore that often leads to decision fatigue.</li>
+<li><strong>The “Usage Gap”:</strong> Even when people know what they have, they often lack the inspiration to use ingredients—especially disparate ones—before they spoil, leading them to buy more groceries instead.</li>
+</ul>
+<p>The core challenge was to design a solution that felt <em>less like a chore</em> and more like a <strong>helpful, intelligent kitchen assistant</strong>.</p>
+<h2 id="section-phase-1-discover-understanding-user-habits">Phase 1: Discover – Understanding User Habits</h2>
+<p>To ground the project in real-world behavior, I began with a multi-faceted research approach.</p>
+<h3 id="section-competitive-analysis">Competitive Analysis</h3>
+<p>I analyzed existing solutions, from basic note-taking apps to large recipe platforms like <strong>Allrecipes</strong> and meal-kit apps like <strong>Blue Apron</strong>. Many recipe apps and pantry trackers exist, but none fully bridge the gap between a user’s actual inventory and meal inspiration. The following chart highlights this competitive landscape and identifies where Freshly can innovate.</p>
+<div class="chart-wrapper" id="chart3"></div>
+<div class="data-source">Data Source: , <em data-ref-id="1973256797745709061"></em>, </div>
+<p><strong>Key Insight:</strong> While many apps offered recipes, none effectively closed the loop between a user’s actual home inventory and meal inspiration. The connection was manual and cumbersome. This was the key opportunity for Freshly.</p>
+<h3 id="section-user-interviews">User Interviews</h3>
+<p>I conducted <strong>interviews with 6 individuals</strong> who manage their household groceries. My goal was to understand their shopping habits, meal planning processes, and frustrations with food waste. The findings were compiled into an affinity diagram to identify common themes, which are summarized below.</p>
+<div class="chart-wrapper" id="chart4"></div>
+<div class="data-source">Data Source: Synthesized from user interviews conducted as part of this case study.</div>
+<p><strong>Key Quotes:</strong></p>
+<blockquote>“I’ll find a shrivelled vegetable in the back of my fridge and feel so guilty. It’s such a waste of money.”</blockquote>
+<blockquote>“The hardest part of cooking is just deciding what to make. I have ingredients but no ideas.”</blockquote>
+<blockquote>“If tracking my pantry takes more time than just looking, I won’t use it.”</blockquote>
+<p>The primary insight was clear: <strong>The solution must be built for speed and automation.</strong> Any feature requiring significant manual input would fail.</p>
+<h2 id="section-phase-2-define-focusing-on-the-user">Phase 2: Define – Focusing on the User</h2>
+<p>With the research data, I moved to synthesize the findings and define a clear direction for the design.</p>
+<h3 id="section-user-persona">User Persona</h3>
+<p>I created the persona of <strong>“Busy Priya”</strong> to represent the target user group. This helped to humanize the problem and maintain focus on user-centric goals throughout the design process.</p>
+<p><strong>Persona: Busy Priya</strong></p>
+<ul>
+<li><strong>Age:</strong> 32</li>
+<li><strong>Occupation:</strong> Marketing Manager</li>
+<li><strong>Goals:</strong>
+<ul>
+<li>Eat healthy, home-cooked meals.</li>
+<li>Save money on groceries and reduce her environmental footprint.</li>
+<li>Spend less time stressing about meal planning.</li>
+</ul>
+</li>
+<li><strong>Frustrations:</strong>
+<ul>
+<li>Forgetting what she has in her pantry and buying duplicates.</li>
+<li>Feeling uninspired to cook with the ingredients she has on hand.</li>
+<li>Hates the guilt of throwing away expired food.</li>
+</ul>
+</li>
+</ul>
+<h3 id="section-defining-the-problem">Defining the Problem</h3>
+<p>Based on Priya’s needs, I formulated a core problem statement:</p>
+<p><em>Busy professionals need an automated and inspiring way to manage their home pantry and plan meals, because the current manual process is time-consuming and leads to significant food and money waste.</em></p>
+<p>This led to several <strong>“How Might We”</strong> questions to guide brainstorming:</p>
+<ul>
+<li>How might we make inventory tracking feel magical and effortless?</li>
+<li>How might we surface the right recipe at the perfect time?</li>
+<li>How might we motivate users by showing them their positive impact?</li>
+</ul>
+<h2 id="section-phase-3-develop-ideation-and-design">Phase 3: Develop – Ideation and Design</h2>
+<p>This phase focused on turning insights into a tangible solution, starting broad and progressively refining the design.</p>
+<h3 id="section-user-flow">User Flow</h3>
+<p>I mapped out the primary user flow: <strong>scanning a receipt to populate the pantry, discovering a recipe, and adding missing items to a shopping list</strong>. This ensured the app’s architecture was logical and intuitive from the start.</p>
+<figure style="text-align: center;">
+<img alt="User flow from recipe selection to order confirmation" src="https://agents-download.skywork.ai/image/rt/5f4abba0a0bf18e1252234aaf7d4eaef.jpg" style="max-height: 280px; max-width: 50vw; max-height: 280px; max-width: 100%;"/>
+<figcaption>A series of mobile app screens demonstrating a user&#39;s journey from viewing a recipe to placing an order</figcaption>
+</figure>
+<h3 id="section-wireframing">Wireframing</h3>
+<p>I progressed from low-fidelity sketches to high-fidelity wireframes in Figma. The primary focus was on three key screens:</p>
+<ul>
+<li><strong>The Onboarding:</strong> How to introduce the “magic” of receipt scanning in a clear, trustworthy way.</li>
+<li><strong>The “Use-It-Up” Feed:</strong> Designing a home screen that was dynamic and engaging, prioritizing expiring items.</li>
+<li><strong>The Shopping List:</strong> Creating a list that was intelligent and prevented users from buying things they already owned.</li>
+</ul>
+<h3 id="section-ui-design-and-branding">UI Design and Branding</h3>
+<p>I developed a visual identity for Freshly focused on a <strong>clean, vibrant, and encouraging aesthetic</strong>. The color palette uses fresh greens and warm, food-inspired accent colors. The typography is clear and legible, creating a calm and user-friendly interface.</p>
+<h2 id="section-phase-4-deliver-testing-and-iteration">Phase 4: Deliver – Testing and Iteration</h2>
+<p>Before finalizing the design, I conducted usability testing with 5 participants using a high-fidelity Figma prototype. I gave them a simple task: <em>“You just got home from the grocery store. Add your items using this receipt and find a recipe you can make for dinner tonight.”</em></p>
+<h3 id="section-usability-testing">Usability Testing</h3>
+<p>Overall, users found the concept intuitive and exciting. However, a few pain points emerged:</p>
+<ul>
+<li><strong>Receipt Scanning was a “Wow” Moment:</strong> Users loved the concept, but wanted to easily edit quantities post-scan.</li>
+<li><strong>Recipe Filters were Needed:</strong> Users wanted to filter the “Use-It-Up” feed by dietary restrictions or meal type (e.g., “vegan,” “quick dinner”).</li>
+<li><strong>Impact Dashboard was Highly Motivating:</strong> Seeing potential savings was a powerful incentive for continued use.</li>
+</ul>
+<h3 id="section-design-iterations">Design Iterations</h3>
+<p>Based on the feedback, I made a key iteration. I added a <strong>quick-edit step after the receipt scan</strong>, allowing users to tap on items to adjust quantities or expiry dates before confirming. This addressed the primary friction point found during testing.</p>
+<figure style="text-align: center;">
+<img alt="Screenshot of the improved receipt scan edit step" src="https://agents-download.skywork.ai/image/rt/0c45a2c498a22279053d112a8f5b2237.jpg" style="max-height: 280px; max-width: 50vw; max-height: 280px; max-width: 100%;"/>
+<figcaption>A mobile app screen showing a search bar and popular recipes grid with an annotation about the search functionality</figcaption>
+</figure>
+<h2 id="section-the-final-solution">The Final Solution</h2>
+<p>The final design for Freshly provides a seamless and intelligent kitchen management experience. Key features include:</p>
+<h3 id="section-effortless-onboarding-inventory">Effortless Onboarding &amp; Inventory</h3>
+<p>Users are greeted with a simple option to scan a receipt. The app uses <strong>OCR to digitize the list</strong>, making pantry tracking a ten-second task, not a ten-minute chore <em data-ref-id="1973256797745709063"></em>. The pantry is automatically populated with items and estimated expiry dates, giving users an instant overview of what they have on hand.</p>
+<h3 id="section-the-use-it-up-feed">The “Use-It-Up” Feed</h3>
+<p>The home screen is a personalized feed of beautiful recipe cards. The algorithm prioritizes recipes that use ingredients closest to their expiry date, turning potential waste into a delicious meal. This approach is supported by research indicating that encouraging users to &#34;use up&#34; existing ingredients is a high-impact strategy for reducing food waste.</p>
+<div class="chart-wrapper" id="chart2" data-sk-source-type="web_search" data-sk-source-container="chart" data-sk-source-id="1973255059746672646"></div>
+<div class="data-source">Data Source: </div>
+<p>Each recipe card shows mouthwatering photos, cooking time, and a list of required ingredients that the user already has. Users can filter recipes by diet or meal type to find exactly what they’re craving.</p>
+<figure style="text-align: center;">
+<img alt="The main dashboard showing recipe cards" src="https://agents-download.skywork.ai/image/rt/c597e51ba742b259eba77bd1b6f4cc66.jpg" style="max-height: 280px; max-width: 50vw; max-height: 280px; max-width: 100%;"/>
+<figcaption>Three distinct mobile phone screens showcasing the home, search, and recipe detail functionalities of a recipe application</figcaption>
+</figure>
+<h3 id="section-intelligent-shopping-list">Intelligent Shopping List</h3>
+<p>When a user finds a recipe they want to cook, any missing ingredients can be one-tap added to the shopping list. The shopping list automatically checks against the user’s pantry. An item already in stock is flagged, preventing duplicate purchases and saving money.</p>
+<h3 id="section-impact-dashboard">Impact Dashboard</h3>
+<p>A clean, visual dashboard tracks <strong>money saved and food waste prevented</strong>, providing positive reinforcement and connecting daily actions to a larger, meaningful goal. This ties into the idea that showing users the tangible, positive impact of their actions (money saved, waste prevented) is a powerful motivator for long-term engagement .</p>
+<h2 id="section-project-takeaways-next-steps">Project Takeaways &amp; Next Steps</h2>
+<h3 id="section-what-i-learned">What I Learned</h3>
+<ul>
+<li><strong>Automation is the Key to Adoption:</strong> For an app to become a daily habit, it must solve a problem with significantly less effort than the user’s current method. The success of Freshly hinges on the “magic” of its automation .</li>
+<li><strong>Positive Reinforcement Drives Engagement:</strong> While solving the problem is key, showing users the tangible, positive impact of their actions (money saved, waste prevented) is a powerful motivator for long-term engagement .</li>
+</ul>
+<h3 id="section-next-steps">Next Steps</h3>
+<p>Moving forward, I would like to implement the following improvements and extensions:</p>
+<ul>
+<li><strong>Expand Automation:</strong> Integrate with smart kitchen devices (e.g., smart scales or fridge cameras) for even more hands-free inventory updates.</li>
+<li><strong>Enhance Personalization:</strong> Use machine learning to learn a user’s preferences and better tailor recipe suggestions over time.</li>
+<li><strong>Community &amp; Sharing:</strong> Allow users to share surplus ingredients or recipes with friends and family, further reducing waste on a community level.</li>
+</ul>
+<p>By continuing to iterate based on user feedback and emerging technologies, Freshly can evolve into an indispensable smart kitchen companion, helping users save money, eat better, and contribute to a more sustainable world—one meal at a time.</p>
+<div class="reference-container">
+			<div class="reference-section">
+				<h3 class="reference-title">Reference</h3>
+				<div class="reference-list">
+					
+					<div class="reference-item">
+						<span class="reference-number">[1]</span>
+						<div class="reference-content">
+							<div class="reference-text-container">
+								<span class="reference-text">Freshly: A Mobile App to Combat Food Waste Among Young Adults</span>
+									
+							</div>
+							<a href="https://digm.drexel.edu/freshly-a-mobile-app-to-combat-food-waste-among-young-adults" class="reference-link" target="_blank">
+								https://digm.drexel.edu/freshly-a-mobile-app-to-combat-food-waste-among-young-adults
+							</a>
+						</div>
+					</div>
+					
+					<div class="reference-item">
+						<span class="reference-number">[2]</span>
+						<div class="reference-content">
+							<div class="reference-text-container">
+								<span class="reference-text">Case Study: Freshly Dropped Recipe App | UX Planet</span>
+									
+							</div>
+							<a href="https://uxplanet.org/case-study-freshly-dropped-app-ux-design-for-cooking-and-shopping-a19c7a00c322" class="reference-link" target="_blank">
+								https://uxplanet.org/case-study-freshly-dropped-app-ux-design-for-cooking-and-shopping-a19c7a00c322
+							</a>
+						</div>
+					</div>
+					
+					<div class="reference-item">
+						<span class="reference-number">[3]</span>
+						<div class="reference-content">
+							<div class="reference-text-container">
+								<span class="reference-text">Case Study: Freshly Dropped Recipe App | UX Planet</span>
+									
+							</div>
+							<a href="https://uxplanet.org/case-study-freshly-dropped-app-ux-design-for-cooking-and-shopping-a19c7a00c322" class="reference-link" target="_blank">
+								https://uxplanet.org/case-study-freshly-dropped-app-ux-design-for-cooking-and-shopping-a19c7a00c322
+							</a>
+						</div>
+					</div>
+					
+					<div class="reference-item">
+						<span class="reference-number">[4]</span>
+						<div class="reference-content">
+							<div class="reference-text-container">
+								<span class="reference-text">Recipe App Case Study - by Velichko Botev - Medium</span>
+									
+							</div>
+							<a href="https://medium.com/@velichko.botev/recipe-app-case-study-986af9c28207" class="reference-link" target="_blank">
+								https://medium.com/@velichko.botev/recipe-app-case-study-986af9c28207
+							</a>
+						</div>
+					</div>
+					
+					<div class="reference-item">
+						<span class="reference-number">[5]</span>
+						<div class="reference-content">
+							<div class="reference-text-container">
+								<span class="reference-text">Pakk case study | UX studio</span>
+									
+							</div>
+							<a href="https://www.uxstudioteam.com/pakk-case-study" class="reference-link" target="_blank">
+								https://www.uxstudioteam.com/pakk-case-study
+							</a>
+						</div>
+					</div>
+					
+					<div class="reference-item">
+						<span class="reference-number">[6]</span>
+						<div class="reference-content">
+							<div class="reference-text-container">
+								<span class="reference-text">Case Study: Enhancing the User Experience of Fresh to Home app.</span>
+									
+							</div>
+							<a href="https://medium.com/design-bootcamp/case-study-enhancing-the-user-experience-of-fresh-to-home-app-f8e6d7a2bd00" class="reference-link" target="_blank">
+								https://medium.com/design-bootcamp/case-study-enhancing-the-user-experience-of-fresh-to-home-app-f8e6d7a2bd00
+							</a>
+						</div>
+					</div>
+					
+					<div class="reference-item">
+						<span class="reference-number">[7]</span>
+						<div class="reference-content">
+							<div class="reference-text-container">
+								<span class="reference-text">Fresh Keeper - Food Management on the App Store</span>
+									
+							</div>
+							<a href="https://apps.apple.com/az/app/fresh-keeper-food-management/id6751138257" class="reference-link" target="_blank">
+								https://apps.apple.com/az/app/fresh-keeper-food-management/id6751138257
+							</a>
+						</div>
+					</div>
+					
+					<div class="reference-item">
+						<span class="reference-number">[8]</span>
+						<div class="reference-content">
+							<div class="reference-text-container">
+								<span class="reference-text">Which behaviours matter? Prioritising food waste reduction ...</span>
+									
+							</div>
+							<a href="https://www.sciencedirect.com/science/article/pii/S0301479723014561" class="reference-link" target="_blank">
+								https://www.sciencedirect.com/science/article/pii/S0301479723014561
+							</a>
+						</div>
+					</div>
+					
+					<div class="reference-item">
+						<span class="reference-number">[9]</span>
+						<div class="reference-content">
+							<div class="reference-text-container">
+								<span class="reference-text">Food Waste in America in 2025: Statistics &amp; Facts | RTS</span>
+									
+							</div>
+							<a href="https://www.rts.com/resources/guides/food-waste-america/" class="reference-link" target="_blank">
+								https://www.rts.com/resources/guides/food-waste-america/
+							</a>
+						</div>
+					</div>
+					
+					<div class="reference-item">
+						<span class="reference-number">[10]</span>
+						<div class="reference-content">
+							<div class="reference-text-container">
+								<span class="reference-text">Food Waste Index Report 2024 | UNEP - UN Environment Programme</span>
+									
+							</div>
+							<a href="https://www.unep.org/resources/publication/food-waste-index-report-2024" class="reference-link" target="_blank">
+								https://www.unep.org/resources/publication/food-waste-index-report-2024
+							</a>
+						</div>
+					</div>
+					
+					<div class="reference-item">
+						<span class="reference-number">[11]</span>
+						<div class="reference-content">
+							<div class="reference-text-container">
+								<span class="reference-text">Sustainable Management of Food | US EPA</span>
+									
+							</div>
+							<a href="https://www.epa.gov/sustainable-management-food" class="reference-link" target="_blank">
+								https://www.epa.gov/sustainable-management-food
+							</a>
+						</div>
+					</div>
+					
+					<div class="reference-item">
+						<span class="reference-number">[12]</span>
+						<div class="reference-content">
+							<div class="reference-text-container">
+								<span class="reference-text">Freshly: A Mobile App to Combat Food Waste Among Young Adults</span>
+									
+							</div>
+							<a href="https://digm.drexel.edu/freshly-a-mobile-app-to-combat-food-waste-among-young-adults" class="reference-link" target="_blank">
+								https://digm.drexel.edu/freshly-a-mobile-app-to-combat-food-waste-among-young-adults
+							</a>
+						</div>
+					</div>
+					
+					<div class="reference-item">
+						<span class="reference-number">[13]</span>
+						<div class="reference-content">
+							<div class="reference-text-container">
+								<span class="reference-text">Freshly Review: Are These Prepared Meals as Good as They Look?</span>
+									
+							</div>
+							<a href="https://www.cnet.com/health/nutrition/freshly-review/" class="reference-link" target="_blank">
+								https://www.cnet.com/health/nutrition/freshly-review/
+							</a>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div></div>
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Chart 1: The Scale of the Food Waste Problem
+            var chart1 = echarts.init(document.getElementById('chart1'));
+            var option1 = {
+                title: {
+                    text: 'The Scale of the Food Waste Problem',
+                    subtext: 'A global and household perspective',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: { type: 'shadow' }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'value',
+                    boundaryGap: [0, 0.01],
+                    axisLabel: {
+                        formatter: function (value) {
+                            if (value >= 1000000000) return (value / 1000000000) + 'B';
+                            if (value >= 1000000) return (value / 1000000) + 'M';
+                            return value;
+                        }
+                    }
+                },
+                yAxis: {
+                    type: 'category',
+                    data: [
+                        'Food wasted in the U.S. (annual value)',
+                        'Food wasted by avg. U.S. family of 4 (annual cost)',
+                        'Global food wasted (annual, in tons)'
+                    ],
+                    axisLabel: {
+                        interval: 0,
+                        rotate: 0
+                    }
+                },
+                series: [
+                    {
+                        name: 'Value/Quantity',
+                        type: 'bar',
+                        data: [218000000000, 3000, 1000000000],
+                        label: {
+                            show: true,
+                            position: 'right',
+                            formatter: function(params) {
+                                if (params.value >= 1000000000) return '$' + (params.value / 1000000000) + ' Billion';
+                                if (params.value >= 1000000) return '$' + (params.value / 1000000) + ' Million';
+                                return '$' + params.value;
+                            }
+                        }
+                    }
+                ]
+            };
+            chart1.setOption(option1);
+
+            // Chart 2: High-Impact Strategies for Household Food Waste Reduction
+            var chart2 = echarts.init(document.getElementById('chart2'));
+            var option2 = {
+                title: {
+                    text: 'High-Impact Strategies for Household Food Waste Reduction',
+                    subtext: 'Based on Impact-Likelihood matrix analysis',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{b}'
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'value',
+                    name: 'Likelihood of Adoption',
+                    nameLocation: 'middle',
+                    nameGap: 30,
+                    splitLine: { show: false },
+                    axisTick: { show: false },
+                    axisLine: { show: false },
+                    axisLabel: { show: false }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: 'Impact on Waste Reduction',
+                    nameLocation: 'middle',
+                    nameGap: 50,
+                    splitLine: { show: false },
+                    axisTick: { show: false },
+                    axisLine: { show: false },
+                    axisLabel: { show: false }
+                },
+                series: [
+                    {
+                        type: 'scatter',
+                        symbolSize: 25,
+                        label: {
+                            show: true,
+                            position: 'bottom',
+                            fontSize: 12,
+                            formatter: '{b}'
+                        },
+                        data: [
+                            { name: 'Use Up Existing Food', value: [80, 90], itemStyle: { color: '#5470c6' } },
+                            { name: 'Check Household Before Cooking', value: [75, 85], itemStyle: { color: '#5470c6' } },
+                            { name: 'Plan Meals', value: [60, 70], itemStyle: { color: '#91cc75' } },
+                            { name: 'Store Food Properly', value: [55, 65], itemStyle: { color: '#91cc75' } },
+                            { name: 'Use Leftovers', value: [50, 60], itemStyle: { color: '#fac858' } },
+                            { name: 'Buy Less Perishable Food', value: [30, 80], itemStyle: { color: '#ee6666' } },
+                            { name: 'Compost Food Scraps', value: [40, 40], itemStyle: { color: '#73c0de' } }
+                        ]
+                    }
+                ],
+                markArea: {
+                    silent: true,
+                    itemStyle: {
+                        color: 'rgba(0,0,0,0.05)'
+                    },
+                    data: [
+                        [{
+                            name: 'High Priority',
+                            xAxis: '50%',
+                            yAxis: '50%'
+                        }, {
+                            xAxis: '100%',
+                            yAxis: '100%'
+                        }],
+                        [{
+                            name: 'Medium Priority',
+                            xAxis: '0%',
+                            yAxis: '50%'
+                        }, {
+                            xAxis: '50%',
+                            yAxis: '100%'
+                        }],
+                        [{
+                            name: 'Low Priority',
+                            xAxis: '0%',
+                            yAxis: '0%'
+                        }, {
+                            xAxis: '50%',
+                            yAxis: '50%'
+                        }]
+                    ]
+                }
+            };
+            chart2.setOption(option2);
+
+            // Chart 3: Competitive Landscape Analysis
+            var chart3 = echarts.init(document.getElementById('chart3'));
+            var option3 = {
+                title: {
+                    text: 'Competitive Landscape: Bridging Inventory & Meal Inspiration',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: { type: 'shadow' }
+                },
+                legend: {
+                    data: ['Inventory Management', 'Meal Inspiration', 'Automation'],
+                    top: 'bottom'
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '10%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'value',
+                    boundaryGap: [0, 0.01],
+                    max: 3
+                },
+                yAxis: {
+                    type: 'category',
+                    data: ['Allrecipes', 'Blue Apron', 'DoorDash', 'Freshly (Drexel Project)', 'Pantry Check']
+                },
+                series: [
+                    {
+                        name: 'Inventory Management',
+                        type: 'bar',
+                        stack: 'total',
+                        label: { show: true, formatter: '{a}', position: 'inside' },
+                        data: [1, 2, 1, 3, 3]
+                    },
+                    {
+                        name: 'Meal Inspiration',
+                        type: 'bar',
+                        stack: 'total',
+                        label: { show: true, formatter: '{a}', position: 'inside' },
+                        data: [3, 2, 1, 3, 1]
+                    },
+                    {
+                        name: 'Automation',
+                        type: 'bar',
+                        stack: 'total',
+                        label: { show: true, formatter: '{a}', position: 'inside' },
+                        data: [1, 2, 3, 3, 2]
+                    }
+                ]
+            };
+            chart3.setOption(option3);
+
+            // Chart 4: User Interview Insights
+            var chart4 = echarts.init(document.getElementById('chart4'));
+            var option4 = {
+                title: {
+                    text: 'User Interview Insights: Key Pain Points & Goals',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: { type: 'shadow' }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'value',
+                    show: false
+                },
+                yAxis: {
+                    type: 'category',
+                    data: [
+                        'Guilt from wasted food & money',
+                        'Inspiration gap (ingredients but no ideas)',
+                        'Desire for effortless inventory tracking',
+                        'Need for time-saving meal planning',
+                        'Want to reduce environmental impact'
+                    ],
+                    axisTick: { show: false },
+                    axisLine: { show: false }
+                },
+                series: [
+                    {
+                        name: 'Insight',
+                        type: 'bar',
+                        data: [100, 100, 100, 100, 100],
+                        label: {
+                            show: true,
+                            position: 'right',
+                            color: '#333',
+                            fontSize: 14
+                        },
+                        itemStyle: {
+                            color: '#91cc75',
+                            borderRadius: 5
+                        },
+                        showBackground: true,
+                        backgroundStyle: {
+                            color: 'rgba(180, 180, 180, 0.2)'
+                        }
+                    }
+                ]
+            };
+            chart4.setOption(option4);
+
+            window.addEventListener('resize', function () {
+                chart1.resize();
+                chart2.resize();
+                chart3.resize();
+                chart4.resize();
+            });
+        });
+    </script>
+
+</body></html>
