@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
 
           {/* Copyright */}
           <div className="pt-8 border-t border-glass-border/20">
-            <p className="text-muted-foreground text-sm">© 2024 Kowshik . All rights reserved. Made with ❤️ in Hyderabad.</p>
+            <p className="text-muted-foreground text-sm">© 2025 Kowshik . All rights reserved. Made by kowshik in Hyderabad.</p>
           </div>
         </div>
       </div>
