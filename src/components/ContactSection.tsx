@@ -6,9 +6,17 @@ import { Send, Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { toast } from 'sonner';
+import { z } from 'zod';
 
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Input validation schema
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  message: z.string().trim().min(1, "Message is required").max(1000, "Message must be less than 1000 characters")
+});
 
 const ContactSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -81,18 +89,23 @@ const ContactSection: React.FC = () => {
     setSubmitError(null);
     setIsSubmitting(true);
 
-    const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzokq63B0EE_58SaiQicC2u48jI3iDOpHpPx82irDK6d14jHM2Pv_Z6m62YEBsjr3CzyQ/exec';
-
     try {
+      // Validate form data
+      const validatedData = contactSchema.parse(formData);
+      
+      const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzokq63B0EE_58SaiQicC2u48jI3iDOpHpPx82irDK6d14jHM2Pv_Z6m62YEBsjr3CzyQ/exec';
+
       // Send to Google Sheets
-      const response = await fetch(GOOGLE_SHEETS_URL, {
+      await fetch(GOOGLE_SHEETS_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
+          name: validatedData.name,
+          email: validatedData.email,
+          message: validatedData.message,
           timestamp: new Date().toISOString(),
         }),
       });
@@ -114,9 +127,15 @@ const ContactSection: React.FC = () => {
         ease: 'power2.inOut'
       });
     } catch (err) {
-      console.error('Error submitting form:', err);
-      toast.error('Failed to send message. Please try again later.');
-      setSubmitError('Failed to send message. Please try again later.');
+      if (err instanceof z.ZodError) {
+        const firstError = err.errors[0];
+        toast.error(firstError.message);
+        setSubmitError(firstError.message);
+      } else {
+        console.error('Error submitting form:', err);
+        toast.error('Failed to send message. Please try again later.');
+        setSubmitError('Failed to send message. Please try again later.');
+      }
     } finally {
       setIsSubmitting(false);
     }
