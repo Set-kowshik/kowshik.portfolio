@@ -5,6 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Send, Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { toast } from 'sonner';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -80,13 +81,11 @@ const ContactSection: React.FC = () => {
     setSubmitError(null);
     setIsSubmitting(true);
 
-    // Replace with your Google Apps Script Web App URL
-    // Instructions: https://developers.google.com/apps-script/guides/web
     const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzokq63B0EE_58SaiQicC2u48jI3iDOpHpPx82irDK6d14jHM2Pv_Z6m62YEBsjr3CzyQ/exec';
 
     try {
       // Send to Google Sheets
-      await fetch(GOOGLE_SHEETS_URL, {
+      const response = await fetch(GOOGLE_SHEETS_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
@@ -98,28 +97,29 @@ const ContactSection: React.FC = () => {
         }),
       });
 
+      // With no-cors mode, we can't read the response, but if no error was thrown, it likely succeeded
+      toast.success('Message sent successfully! I\'ll get back to you soon.');
+      
       // Clear form
       setFormData({ name: '', email: '', message: '' });
       if (formRef.current) {
         formRef.current.reset();
       }
-      
-      // Show success (you can add a toast notification here if needed)
-      console.log('Form submitted successfully!');
+
+      gsap.to('.submit-btn', {
+        scale: 1.05,
+        duration: 0.1,
+        yoyo: true,
+        repeat: 1,
+        ease: 'power2.inOut'
+      });
     } catch (err) {
       console.error('Error submitting form:', err);
+      toast.error('Failed to send message. Please try again later.');
       setSubmitError('Failed to send message. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
-
-    gsap.to('.submit-btn', {
-      scale: 1.05,
-      duration: 0.1,
-      yoyo: true,
-      repeat: 1,
-      ease: 'power2.inOut'
-    });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
