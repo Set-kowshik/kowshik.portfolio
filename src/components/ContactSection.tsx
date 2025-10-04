@@ -82,23 +82,21 @@ const ContactSection: React.FC = () => {
 
     // Replace with your Google Apps Script Web App URL
     // Instructions: https://developers.google.com/apps-script/guides/web
-    const GOOGLE_SHEETS_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+    const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzokq63B0EE_58SaiQicC2u48jI3iDOpHpPx82irDK6d14jHM2Pv_Z6m62YEBsjr3CzyQ/exec';
 
     try {
       // Send to Google Sheets
-      if (GOOGLE_SHEETS_URL && GOOGLE_SHEETS_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
-        await fetch(GOOGLE_SHEETS_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            message: formData.message,
-            timestamp: new Date().toISOString(),
-          }),
-        });
-      }
+      await fetch(GOOGLE_SHEETS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          timestamp: new Date().toISOString(),
+        }),
+      });
 
       // Clear form
       setFormData({ name: '', email: '', message: '' });
