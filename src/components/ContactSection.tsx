@@ -5,7 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Send, Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import emailjs from '@emailjs/browser';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -80,51 +80,36 @@ const ContactSection: React.FC = () => {
     setSubmitError(null);
     setIsSubmitting(true);
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
-    const appsScriptUrl = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL as string | undefined;
-
-    if (!serviceId || !templateId || !publicKey) {
-      setSubmitError('Email service is not configured.');
-      setIsSubmitting(false);
-      return;
-    }
+    // Replace with your Google Apps Script Web App URL
+    // Instructions: https://developers.google.com/apps-script/guides/web
+    const GOOGLE_SHEETS_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
     try {
-      const emailPromise = emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: formData.name,
-          reply_to: formData.email,
-          message: formData.message,
-          to_email: 'g.kowshik00@gmail.com',
-        },
-        { publicKey }
-      );
+      // Send to Google Sheets
+      if (GOOGLE_SHEETS_URL && GOOGLE_SHEETS_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+        await fetch(GOOGLE_SHEETS_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+            timestamp: new Date().toISOString(),
+          }),
+        });
+      }
 
-      const sheetsPromise = appsScriptUrl
-        ? fetch(appsScriptUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            // If your Apps Script doesn't include CORS headers, you can switch to: mode: 'no-cors'
-            body: JSON.stringify({
-              name: formData.name,
-              email: formData.email,
-              message: formData.message,
-              timestamp: new Date().toISOString(),
-            }),
-          })
-        : Promise.resolve(new Response());
-
-      await Promise.allSettled([emailPromise, sheetsPromise]);
-
+      // Clear form
       setFormData({ name: '', email: '', message: '' });
       if (formRef.current) {
         formRef.current.reset();
       }
+      
+      // Show success (you can add a toast notification here if needed)
+      console.log('Form submitted successfully!');
     } catch (err) {
+      console.error('Error submitting form:', err);
       setSubmitError('Failed to send message. Please try again later.');
     } finally {
       setIsSubmitting(false);

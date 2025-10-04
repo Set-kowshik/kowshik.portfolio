@@ -71,7 +71,14 @@ const HeroSection: React.FC = () => {
 
         {/* Call to Action Buttons */}
         <div ref={buttonRef} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button variant="hero" size="xl" className="group">
+          <Button 
+            variant="hero" 
+            size="xl" 
+            className="group"
+            onClick={() => {
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             Hire Me
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>
