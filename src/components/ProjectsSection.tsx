@@ -77,13 +77,12 @@ const ProjectsSection: React.FC = () => {
 
       // Project cards stagger animation
       gsap.fromTo('.project-card',
-        { opacity: 0, y: 100, rotationX: -15 },
+        { opacity: 0, y: 60 },
         {
           opacity: 1,
           y: 0,
-          rotationX: 0,
           duration: 0.8,
-          stagger: 0.2,
+          stagger: 0.15,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: scrollContainerRef.current,
@@ -92,58 +91,44 @@ const ProjectsSection: React.FC = () => {
         }
       );
 
-      // Horizontal scroll for mobile
-      if (window.innerWidth < 768) {
-        gsap.to(scrollContainerRef.current, {
-          x: () => -(scrollContainerRef.current!.scrollWidth - window.innerWidth),
-          ease: 'none',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            pin: true,
-            scrub: 1,
-            end: () => `+=${scrollContainerRef.current!.scrollWidth}`,
-          }
-        });
-      }
-
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section id="projects" ref={containerRef} className="py-24 px-6 relative overflow-hidden">
+    <section id="projects" ref={containerRef} className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 grid-bg opacity-10" />
       
       <div className="max-w-7xl mx-auto">
         {/* Title */}
-        <div className="text-center mb-16">
-          <h2 className="projects-title text-4xl font-bold mb-6">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="projects-title text-3xl md:text-4xl font-bold mb-4 md:mb-6">
             Featured{' '}
             <span className="bg-gradient-primary bg-clip-text text-transparent">
               Projects
             </span>
           </h2>
-          <p className="projects-title text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="projects-title text-muted-foreground text-base md:text-lg max-w-2xl mx-auto px-4">
             A collection of my recent work showcasing modern web technologies and innovative design solutions.
           </p>
         </div>
 
         {/* Projects Grid */}
-        <div ref={scrollContainerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 justify-items-center md:justify-items-stretch">
+        <div ref={scrollContainerRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 place-items-center sm:place-items-stretch">
           {projects.map((project) => (
             <div
               key={project.id}
               onClick={() => navigate(`/case-study/${project.caseStudyId}`)}
-              className="project-card group glass-elevated rounded-2xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-pointer hover:-translate-y-2 hover:scale-[1.03] hover:shadow-2xl hover:shadow-primary/25 hover:rotate-[0.5deg] w-full max-w-sm md:max-w-none"
+              className="project-card group glass-elevated rounded-2xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-pointer hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/25 w-full max-w-[400px] sm:max-w-none"
             >
               {/* Project Image */}
               <div className="relative overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-cover transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-105 group-hover:brightness-125 group-hover:saturate-110"
+                  className="w-full h-48 sm:h-52 md:h-48 object-cover transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-110 group-hover:brightness-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-600 ease-[cubic-bezier(0.4,0,0.2,1)]" />
                 
@@ -159,21 +144,21 @@ const ProjectsSection: React.FC = () => {
               </div>
 
               {/* Project Info */}
-              <div className="p-6 transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:bg-card/80">
-                <h3 className="text-xl font-semibold mb-3 transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:text-primary group-hover:translate-x-2">
+              <div className="p-5 md:p-6 transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:bg-card/80">
+                <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:text-primary">
                   {project.title}
                 </h3>
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:text-foreground/90 group-hover:translate-x-1">
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:text-foreground/90">
                   {project.description}
                 </p>
                 
                 {/* Tech Stack */}
-                <div className="transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:translate-x-1">
+                <div className="mb-4">
                   <TechStackIcons techStack={project.tech} />
                 </div>
 
                 {/* Links */}
-                <div className="flex space-x-3 mt-4 opacity-80 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] delay-150">
+                <div className="flex space-x-2 md:space-x-3">
                   <Button 
                     variant="glow" 
                     size="sm" 
