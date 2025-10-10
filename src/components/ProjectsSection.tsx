@@ -131,12 +131,12 @@ const ProjectsSection: React.FC = () => {
         </div>
 
         {/* Projects Grid */}
-        <div ref={scrollContainerRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+        <div ref={scrollContainerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 justify-items-center md:justify-items-stretch">
           {projects.map((project) => (
             <div
               key={project.id}
               onClick={() => navigate(`/case-study/${project.caseStudyId}`)}
-              className="project-card group glass-elevated rounded-2xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-pointer hover:-translate-y-2 hover:scale-[1.03] hover:shadow-2xl hover:shadow-primary/25 hover:rotate-[0.5deg]"
+              className="project-card group glass-elevated rounded-2xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-pointer hover:-translate-y-2 hover:scale-[1.03] hover:shadow-2xl hover:shadow-primary/25 hover:rotate-[0.5deg] w-full max-w-sm md:max-w-none"
             >
               {/* Project Image */}
               <div className="relative overflow-hidden">
